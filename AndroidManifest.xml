@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.gamecook">
+    <application android:icon="@drawable/icon" android:label="CigarSmuggler">
+        <activity android:name=".activities.StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.InstructionsActivtiy" android:label="Instructions"/>
+        <activity android:name=".activities.ScoresActivtiy" android:label="Scores"/>
+        <activity android:name=".activities.CreditsActivtiy" android:label="Credits"/>
+        <activity android:name=".activities.GameActivtiy" android:label="locations"/>
+        <activity android:name=".activities.BankActivtiy" android:label="bank"/>
+    </application>
+</manifest>

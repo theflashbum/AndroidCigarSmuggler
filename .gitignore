@@ -1,0 +1,7 @@
+Icon
+Thumbs.db
+.DS_Store
+*.iml
+
+bin/*
+gen/*

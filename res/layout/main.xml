@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#ffffff">
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Cigar Smuggler"/>
+
+    <Button android:text="Start"
+            android:id="@+id/Start"
+            android:layout_width="250px"
+            android:textSize="18px"
+            android:layout_height="55px">
+    </Button>
+    <Button android:text="Instructions"
+            android:id="@+id/Instructions"
+            android:layout_width="250px"
+            android:textSize="18px"
+            android:layout_height="55px">
+    </Button>
+    <Button android:text="High Scores"
+            android:id="@+id/Scores"
+            android:layout_width="250px"
+            android:textSize="18px"
+            android:layout_height="55px">
+    </Button>
+    <Button android:text="Credits"
+            android:id="@+id/Credits"
+            android:layout_width="250px"
+            android:textSize="18px"
+            android:layout_height="55px">
+    </Button>
+</LinearLayout>
+
+        
