@@ -66,4 +66,7 @@ public class Locations {
         return locations.get(lastID);
     }
 
+    public int getTotal() {
+        return locations.size();
+    }
 }

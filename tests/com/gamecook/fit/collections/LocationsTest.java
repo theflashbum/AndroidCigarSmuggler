@@ -59,4 +59,10 @@ public class LocationsTest {
             locations.gotoLocationByID(0);
             assertEquals(locations.getLastLocation(), "LocationC");
         }
+
+        @Test
+    public void testGetTotal()
+        {
+            assertEquals(locations.getTotal(), 3);
+        }
 }

@@ -55,7 +55,6 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
                 Intent myIntent = new Intent(view.getContext(), CreditsActivtiy.class);
                 startActivityForResult(myIntent, 0);
             }
-
         });
     }
 

@@ -2,6 +2,9 @@ package com.gamecook.fit.collections;
 
 import java.util.HashMap;
 
+/**
+ * @deprecated 
+ */
 public class Inventory {
 
     protected HashMap<String, Integer> _items = new HashMap<String, Integer>();
