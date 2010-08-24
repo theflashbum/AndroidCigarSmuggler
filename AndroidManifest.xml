@@ -11,7 +11,8 @@
         <activity android:name=".activities.InstructionsActivtiy" android:label="Instructions"/>
         <activity android:name=".activities.ScoresActivtiy" android:label="Scores"/>
         <activity android:name=".activities.CreditsActivtiy" android:label="Credits"/>
-        <activity android:name=".activities.GameActivtiy" android:label="locations"/>
+        <activity android:name=".activities.GameActivity" android:label="locations"/>
         <activity android:name=".activities.BankActivtiy" android:label="bank"/>
+        <activity android:name=".activities.GameOver" android:label="GameOver"/>
     </application>
 </manifest>

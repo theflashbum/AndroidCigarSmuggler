@@ -24,9 +24,20 @@ public abstract class AbstractGame {
     protected Wallet wallet;
     protected Player player;
     protected Calendar calendar;
+    protected Boolean gameStarted = false;
+
+    public abstract void startGame(int days);
+    public abstract void endGame();
+    public abstract void nextTurn();
+    public abstract void reset();
+    
+    public Boolean getGameStarted() {
+        return gameStarted;
+    }                
 
     public Locations getLocations() {
-        return locations != null ? locations : new Locations();
+        if (locations == null) locations = new Locations();
+        return locations;
     }
 
     public void setLocations(Locations locations) {
@@ -34,7 +45,8 @@ public abstract class AbstractGame {
     }
 
     public Store getStore() {
-        return store != null ? store : new Store();
+        if (store == null) store = new Store();
+        return store;
     }
 
     public void setStore(Store store) {
@@ -42,7 +54,8 @@ public abstract class AbstractGame {
     }
 
     public Bank getBank() {
-        return bank != null ? bank : new Bank(0);
+        if (bank == null) bank = new Bank(0);
+        return bank;
     }
 
     public void setBank(Bank bank) {
@@ -50,7 +63,8 @@ public abstract class AbstractGame {
     }
 
     public Wallet getWallet() {
-        return wallet != null ? wallet : new Wallet(0);
+        if (wallet == null) wallet = new Wallet(0);
+        return wallet;
     }
 
     public void setWallet(Wallet wallet) {
@@ -58,7 +72,8 @@ public abstract class AbstractGame {
     }
 
     public Player getPlayer() {
-        return player != null ? player : new Player("No Name");
+        if (player == null) player = new Player("No Name");
+        return player;
     }
 
     public void setPlayer(Player player) {
@@ -66,10 +81,13 @@ public abstract class AbstractGame {
     }
 
     public Calendar getCalendar() {
-        return calendar != null ? calendar : new Calendar(0) ;
+        if (calendar == null) calendar = new Calendar(0);
+        return calendar;
     }
 
     public void setCalendar(Calendar calendar) {
         this.calendar = calendar;
     }
+
+
 }

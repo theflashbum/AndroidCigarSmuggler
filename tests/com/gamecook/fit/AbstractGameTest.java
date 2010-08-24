@@ -126,6 +126,25 @@ public class AbstractGameTest {
 class MockGame extends AbstractGame
 {
 
+    @Override
+    public void startGame(int days) {
+
+    }
+
+    @Override
+    public void endGame() {
+
+    }
+
+    @Override
+    public void nextTurn() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void reset() {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }
 
 class MockItem extends AbstractItem
