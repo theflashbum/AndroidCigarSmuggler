@@ -26,4 +26,8 @@ public enum Cigars {
         this.name = name;
         this.cost = cost;
     }
+
+    public int cost() {
+        return cost;
+    }
 }

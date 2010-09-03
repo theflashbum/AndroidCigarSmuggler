@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import com.gamecook.CigarSmugglerGame;
+import com.gamecook.core.CigarSmugglerGame;
 import com.gamecook.R;
 import com.gamecook.fit.managers.SingletonManager;
 

@@ -2,8 +2,10 @@ package com.gamecook.fit.collections;
 
 import com.gamecook.fit.items.Item;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Store {
     protected HashMap<String, Item> inventory = new HashMap<String, Item>();
@@ -99,4 +101,18 @@ public class Store {
     {
         return inventory.containsKey(name);
     }
+
+    public String[] getInventoryAsArray()
+    {
+        return convert(inventory);
+    }
+
+    public String[] convert(HashMap<String, Item> things)
+    {
+        String[] tArray = things.keySet().toArray(new String[things.size()]);
+        Arrays.sort(tArray);
+        return tArray;
+    }
+
+
 }

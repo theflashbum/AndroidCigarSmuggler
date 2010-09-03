@@ -1,5 +1,7 @@
 package com.gamecook.fit.collections;
 
+import android.widget.ArrayAdapter;
+
 import java.util.ArrayList;
 
 
@@ -69,4 +71,9 @@ public class Locations {
     public int getTotal() {
         return locations.size();
     }
+
+    /*public ArrayAdapter<String> getLocationArray() {
+
+        return new ArrayAdapter<String>(locations);
+    }*/
 }

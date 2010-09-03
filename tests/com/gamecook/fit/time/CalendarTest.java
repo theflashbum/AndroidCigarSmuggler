@@ -4,9 +4,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.Assert.*;
 
-import static junit.framework.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static junit.framework.Assert.*;
 
 /**
  * Created by IntelliJ IDEA.

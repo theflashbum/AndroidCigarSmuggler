@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#ffffff"  >
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#ffffff">
 
     <TextView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:textColor="#000000"
-    android:text="Instructions" />
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Instructions"/>
 
     <TextView
-        android:id="@+id/instructionText"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum dolor at erat sagittis at ornare magna facilisis. Duis viverra erat sit amet sem condimentum eget pulvinar mauris vehicula. Aliquam ac leo libero, sit amet fermentum nunc. Nunc erat turpis, suscipit vel imperdiet at, pharetra ac magna. Vivamus nec dapibus mauris. Nam ut lectus ut justo accumsan molestie. Curabitur eu malesuada elit. Donec vel justo a nibh sodales tempus eu id odio. Etiam semper leo a erat viverra ultricies. Cras euismod, purus sit amet faucibus elementum, ipsum quam euismod felis, egestas malesuada odio velit at velit. Nulla facilisi. Sed bibendum iaculis convallis. Donec gravida porta pretium. Quisque ullamcorper iaculis fringilla. Nam ut nunc et elit adipiscing cursus eget eget quam. Cras laoreet, orci et iaculis fermentum, arcu sapien mollis eros, vel molestie nisi nisl varius orci. Vivamus lobortis nunc non felis venenatis semper. Maecenas laoreet sagittis ante quis dignissim. \n \n Quisque convallis dignissim nisl eu mollis. Nulla consequat egestas nisi nec ultrices. Donec vel tellus eget tortor laoreet pharetra. Nulla condimentum rhoncus tellus in pellentesque. Praesent in eros sem. Nulla auctor consectetur lectus, ut pulvinar dolor porta non. Fusce egestas ultrices enim, at fermentum ligula consectetur a. Nulla facilisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc convallis eros non lorem congue euismod euismod dolor tempus. Curabitur in magna sed sapien congue rutrum. Cras accumsan dolor a sapien ullamcorper vitae accumsan mauris auctor. Vivamus eros eros, pulvinar vitae elementum vel, tempor sed tellus. Pellentesque vehicula sollicitudin vehicula. Donec bibendum porta velit, ut tincidunt erat imperdiet eleifend. Pellentesque auctor dictum neque sit amet lobortis. Donec eget tortor justo, id feugiat tellus. In vel massa ligula. Praesent non vehicula quam."
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:textColor="#000000"
-        android:fadeScrollbars="true"
-        android:scrollbars="vertical"
-        />
+            android:id="@+id/instructionText"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum dolor at erat sagittis at ornare magna facilisis. Duis viverra erat sit amet sem condimentum eget pulvinar mauris vehicula. Aliquam ac leo libero, sit amet fermentum nunc. Nunc erat turpis, suscipit vel imperdiet at, pharetra ac magna. Vivamus nec dapibus mauris. Nam ut lectus ut justo accumsan molestie. Curabitur eu malesuada elit. Donec vel justo a nibh sodales tempus eu id odio. Etiam semper leo a erat viverra ultricies. Cras euismod, purus sit amet faucibus elementum, ipsum quam euismod felis, egestas malesuada odio velit at velit. Nulla facilisi. Sed bibendum iaculis convallis. Donec gravida porta pretium. Quisque ullamcorper iaculis fringilla. Nam ut nunc et elit adipiscing cursus eget eget quam. Cras laoreet, orci et iaculis fermentum, arcu sapien mollis eros, vel molestie nisi nisl varius orci. Vivamus lobortis nunc non felis venenatis semper. Maecenas laoreet sagittis ante quis dignissim. \n \n Quisque convallis dignissim nisl eu mollis. Nulla consequat egestas nisi nec ultrices. Donec vel tellus eget tortor laoreet pharetra. Nulla condimentum rhoncus tellus in pellentesque. Praesent in eros sem. Nulla auctor consectetur lectus, ut pulvinar dolor porta non. Fusce egestas ultrices enim, at fermentum ligula consectetur a. Nulla facilisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc convallis eros non lorem congue euismod euismod dolor tempus. Curabitur in magna sed sapien congue rutrum. Cras accumsan dolor a sapien ullamcorper vitae accumsan mauris auctor. Vivamus eros eros, pulvinar vitae elementum vel, tempor sed tellus. Pellentesque vehicula sollicitudin vehicula. Donec bibendum porta velit, ut tincidunt erat imperdiet eleifend. Pellentesque auctor dictum neque sit amet lobortis. Donec eget tortor justo, id feugiat tellus. In vel massa ligula. Praesent non vehicula quam."
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textColor="#000000"
+            android:fadeScrollbars="true"
+            android:scrollbars="vertical"
+            />
 </LinearLayout>

@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import com.gamecook.CigarSmugglerGame;
+import com.gamecook.core.CigarSmugglerGame;
 import com.gamecook.R;
 import com.gamecook.fit.managers.SingletonManager;
 
@@ -117,7 +117,7 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
     public void onClick(DialogInterface dialogInterface, int i) {
 
         Toast.makeText(getApplicationContext(), "Starting New Game!", Toast.LENGTH_SHORT).show();
-        createNewGame(((difficultLevels.length - i) + 1) * TOTAL_DAYS);
+        createNewGame(((difficultLevels.length - (i+1)) + 1) * TOTAL_DAYS);
 
     }
 
