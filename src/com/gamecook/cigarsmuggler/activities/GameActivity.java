@@ -111,7 +111,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
 builder.setMessage(action+" "+currentCigar.getName())
        .setCancelable(false)
        .setPositiveButton(action, new BuyClickHandler())
-       .setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+       .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
            public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
            }
