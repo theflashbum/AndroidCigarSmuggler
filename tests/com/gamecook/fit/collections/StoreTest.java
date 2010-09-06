@@ -2,6 +2,7 @@ package com.gamecook.fit.collections;
 
 import com.gamecook.fit.items.AbstractItem;
 import com.gamecook.fit.items.Item;
+import com.gamecook.fit.items.MockItem;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,73 +48,6 @@ public class StoreTest {
 
         Item itemA = store.get("Item A");
         assertTrue(itemA.getPrice() <= itemA.getMaxPrice() && itemA.getPrice() >= itemA.getMinPrice());
-    }
-
-    @Test
-    public void testAdd() throws Exception {
-        Item itemD = new MockItem("Item D");
-
-        store.add(itemD, 1);
-
-        Item itemDInStore = store.get("Item D");
-
-        assertEquals(itemD, itemDInStore);
-        assertEquals(itemDInStore.getTotal(), 1);
-    }
-
-    @Test
-    public void testRemove() throws Exception {
-        assertTrue(store.remove("Item B"));
-    }
-
-    @Test
-    public void testRemoveFail() throws Exception {
-        assertFalse(store.remove("Item X"));
-    }
-
-    @Test
-    public void testGetItem()
-    {
-        assertNotNull(store.get("Item A"));
-    }
-
-    @Test
-    public void testGetTotalItems()
-    {
-        assertEquals(store.getTotalItems(), 3);
-    }
-
-    @Test
-    public void testGetItemTotal()
-    {
-        assertEquals(store.getItemTotal("Item B"), 10);
-    }
-
-    @Test
-    public void testAddToItemTotal()
-    {
-        assertEquals(store.addToItemTotal("Item B", 20), 30);
-
-    }
-
-    @Test
-    public void testAddItemThatExists()
-    {
-        Item tmpItem = new MockItem("Item B");
-        store.add(tmpItem, 100);
-        assertEquals(store.get("Item B").getTotal(), 110);
-    }
-}
-
-class MockItem extends AbstractItem
-{
-    public MockItem(String name)
-    {
-        super(name);
-    }
-
-    public Item clone(String name) {
-        return new MockItem(name);  //To change body of implemented methods use File | Settings | File Templates.
     }
 
 }

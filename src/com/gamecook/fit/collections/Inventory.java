@@ -1,13 +1,15 @@
 package com.gamecook.fit.collections;
 
+import com.gamecook.fit.items.Item;
+
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 
-/**
- * @deprecated 
- */
+
 public class Inventory {
 
-    protected HashMap<String, Integer> _items = new HashMap<String, Integer>();
+    protected HashMap<String, Item> inventory = new HashMap<String, Item>();
 
     /**
      * Inventory is a basic collection class which allows
@@ -21,61 +23,104 @@ public class Inventory {
 
     }
 
+
     /**
-     * This method allows you to
-     * add an item by name and give it a total representing
-     * how many of that item is present.
+     * Adds an item to the inventory along with a amount
+     * for that item.
      *
-     * @param name
-     * @param total
+     * @param item
+     * @return
      */
-    public void addToInventory(String name, int total) {
-        if (_items.containsKey(name)) {
-            _items.put(name, _items.get(name) + total);
-        } else {
-            _items.put(name, total);
+    public void add(Item item, int amount) {
+        if (inventory.containsKey(item.getName()))
+        {
+            addToItemTotal(item.getName(), amount);
+            return;
         }
+        item.setTotal(amount);
+        inventory.put(item.getName(), item);
     }
 
     /**
-     * This method allows you
-     * to remove the amount of an item. When an item's
-     * total is zero it is automatically removed from the
-     * inventory.
+     * Completely removes and item from the Inventory.
      *
      * @param name
-     * @param total
+     * @return
      */
-    public void removeFromInventory(String name, int total) {
-        if ((_items.get(name) < total) || !_items.containsKey(name)) {
-            throw new Error("RangeError");
+    public Boolean remove(String name) {
+        if (inventory.containsKey(name)) {
+            inventory.remove(name);
+            return true;
         } else {
-            _items.put(name, _items.get(name) - total);
-
+            return false;
         }
 
-        if (_items.get(name) == 0) {
-            _items.remove(name);
-        }
     }
 
     /**
-     * Returns the total amount of a particular item.
+     * Removes some amount of an item from the inventory
+     * and returns what is left for that item.
      *
      * @param id
+     * @param amount
      * @return
      */
-    public int getTotalOfItem(String id) {
-        return _items.get(id);
+    public int removeFromInventory(Item id, int amount) {
+        if(!hasItem(id.getName()))
+        {
+            return 0;
+        }
+        else
+        {
+            int remainder = getItemTotal(id.getName()) - amount;
+            if(remainder <= 0)
+            {
+                remove(id.getName());
+            }
+            else
+            {
+                inventory.get(id.getName()).setTotal(remainder);
+            }
+
+            return remainder;
+        }
+
     }
 
-    /**
-     * Returns the total amount of items in the
-     * Inventory.
-     *
-     * @return
-     */
-    public int getTotal() {
-        return _items.size();
+    public int getTotalItems() {
+        return inventory.size();
+    }
+
+    public int getItemTotal(String name) {
+        return inventory.get(name).getTotal();
+    }
+
+    public Item get(String name) {
+        return inventory.get(name);
+    }
+
+    public int addToItemTotal(String name, int value) {
+        Item tmpItem = inventory.get(name);
+
+        tmpItem.setTotal(tmpItem.getTotal() + value);
+
+        return tmpItem.getTotal();
+    }
+
+    public Boolean hasItem(String name)
+    {
+        return inventory.containsKey(name);
+    }
+
+    public String[] getInventoryAsArray()
+    {
+        return convert(inventory);
+    }
+
+    protected String[] convert(HashMap<String, Item> things)
+    {
+        String[] tArray = things.keySet().toArray(new String[things.size()]);
+        Arrays.sort(tArray);
+        return tArray;
     }
 }

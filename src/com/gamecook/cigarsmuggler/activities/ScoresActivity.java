@@ -1,4 +1,4 @@
-package com.gamecook.activities;
+package com.gamecook.cigarsmuggler.activities;
 
 import android.app.TabActivity;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import com.gamecook.R;
  * Time: 3:27:50 PM
  * To change this template use File | Settings | File Templates.
  */
-public class ScoresActivtiy extends TabActivity {
+public class ScoresActivity extends TabActivity {
 
     private TabHost mTabHost;
 

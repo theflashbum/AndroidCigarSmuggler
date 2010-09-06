@@ -4,6 +4,7 @@ import com.gamecook.fit.player.Player;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.gamecook.fit.managers.SingletonManager.*;
 import static junit.framework.Assert.assertEquals;
 
 /**
@@ -24,10 +25,10 @@ public class SingletonManagerTest {
 
     @Test
     public void testGetClassReference() throws Exception {
-        MockObject mo1 = (MockObject) SingletonManager.getInstance().getClassReference(MockObject.class);
+        MockObject mo1 = (MockObject) getInstance().getClassReference(MockObject.class);
         mo1.name = "MockObject1";
 
-        MockObject mo2 = (MockObject) SingletonManager.getInstance().getClassReference(MockObject.class);
+        MockObject mo2 = (MockObject) getInstance().getClassReference(MockObject.class);
         mo2.name = "MockObject2";
         
         assertEquals(mo1.name, mo2.name, "MockObject2");

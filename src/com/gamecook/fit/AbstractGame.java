@@ -90,4 +90,12 @@ public abstract class AbstractGame {
     }
 
 
+    public Inventory getInventory() {
+        if(inventory == null) inventory = new Inventory();
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
 }

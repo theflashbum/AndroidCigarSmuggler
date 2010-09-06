@@ -1,4 +1,4 @@
-package com.gamecook.enums;
+package com.gamecook.cigarsmuggler.enums;
 
 /**
  * Created by IntelliJ IDEA.

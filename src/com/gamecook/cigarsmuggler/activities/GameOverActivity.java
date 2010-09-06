@@ -1,10 +1,10 @@
-package com.gamecook.activities;
+package com.gamecook.cigarsmuggler.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import com.gamecook.core.CigarSmugglerGame;
+import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.R;
 import com.gamecook.fit.managers.SingletonManager;
 
@@ -15,7 +15,7 @@ import com.gamecook.fit.managers.SingletonManager;
  * Time: 9:33:54 PM
  * To change this template use File | Settings | File Templates.
  */
-public class GameOver extends Activity {
+public class GameOverActivity extends Activity {
 
     private CigarSmugglerGame game = (CigarSmugglerGame) SingletonManager.getInstance().getClassReference(CigarSmugglerGame.class);
 

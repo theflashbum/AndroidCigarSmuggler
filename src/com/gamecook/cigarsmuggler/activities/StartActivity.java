@@ -1,4 +1,4 @@
-package com.gamecook.activities;
+package com.gamecook.cigarsmuggler.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import com.gamecook.core.CigarSmugglerGame;
+import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.R;
 import com.gamecook.fit.managers.SingletonManager;
 
@@ -45,7 +45,7 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
         Button scores = (Button) findViewById(R.id.Scores);
         scores.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), ScoresActivtiy.class);
+                Intent myIntent = new Intent(view.getContext(), ScoresActivity.class);
                 startActivityForResult(myIntent, 0);
             }
 
@@ -54,7 +54,7 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
         Button instructions = (Button) findViewById(R.id.Instructions);
         instructions.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), InstructionsActivtiy.class);
+                Intent myIntent = new Intent(view.getContext(), InstructionsActivity.class);
                 startActivityForResult(myIntent, 0);
             }
 
@@ -63,7 +63,7 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
         Button credits = (Button) findViewById(R.id.Credits);
         credits.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), CreditsActivtiy.class);
+                Intent myIntent = new Intent(view.getContext(), CreditsActivity.class);
                 startActivityForResult(myIntent, 0);
             }
         });

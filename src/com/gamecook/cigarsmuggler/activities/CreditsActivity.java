@@ -1,4 +1,4 @@
-package com.gamecook.activities;
+package com.gamecook.cigarsmuggler.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import com.gamecook.R;
  * Time: 3:31:48 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CreditsActivtiy extends Activity {
+public class CreditsActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

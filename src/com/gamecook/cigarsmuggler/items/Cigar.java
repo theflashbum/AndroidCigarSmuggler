@@ -1,4 +1,4 @@
-package com.gamecook.items;
+package com.gamecook.cigarsmuggler.items;
 
 import com.gamecook.fit.items.AbstractItem;
 import com.gamecook.fit.items.Item;

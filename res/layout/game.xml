@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/game_display"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:background="#ffffff">
@@ -71,46 +72,23 @@
                     android:text="Description goes here."
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"/>
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:id="@+id/buy_sell_layout"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
 
-                <Button
-                        android:id="@+id/buy"
-                        android:text="Buy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                <Button
-                        android:id="@+id/sell"
-                        android:text="sell"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-            </LinearLayout>
+            <Button
+                    android:id="@+id/BuyCigarButton"
+                    android:text="Buy"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"/>
+            <Button
+                    android:id="@+id/SellCigarButton"
+                    android:text="Sell"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"/>
 
             <TextView
                     android:id="@+id/history"
                     android:text="History"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"/>
-
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                >
-
-                <com.quietlycoding.android.picker.NumberPicker
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content" />
-
-                <com.quietlycoding.android.picker.NumberPicker
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content" />
-
-                </LinearLayout>
 
             <!-- History Component -->
 
