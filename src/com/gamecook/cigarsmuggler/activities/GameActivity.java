@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +14,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
 import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
-import com.gamecook.R;
+import com.gamecook.cigarsmuggler.R;
 import com.gamecook.fit.collections.Inventory;
 import com.gamecook.fit.managers.SingletonManager;
 import com.gamecook.cigarsmuggler.items.Cigar;
 import com.quietlycoding.android.picker.NumberPicker;
+
+import java.lang.reflect.Array;
 
 /**
  * Created by IntelliJ IDEA.
@@ -44,20 +47,24 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
     private Inventory inventory;
     private int tmpTotalToBuy;
     private int currentShopMode;
-
-    public int getCurrentLocation() {
-        return currentLocation;
-    }
-
-    public void setCurrentLocation(int currentLocation) {
-        this.currentLocation = currentLocation;
-    }
-
-    private int currentLocation;
+    private String[] activeLocations;
+    private String[] locations;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        locations = new String[]{
+            "Ft. Lauderdale",
+            "Miami",
+            "Hialeah",
+            "Hollywood",
+            "Boca Raton",
+            };
+
+        if(game.getCurrentLocation() == null)
+            game.setCurrentLocation(locations[0]);
+
         setContentView(R.layout.game);
 
         Button location = (Button) findViewById(R.id.location);
@@ -70,10 +77,10 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         slideRightIn = AnimationUtils.loadAnimation(this, R.anim.slide_right_in);
         slideRightOut = AnimationUtils.loadAnimation(this, R.anim.slide_right_out);
 
-        buyButton = (Button) findViewById(R.id.buy);
+        buyButton = (Button) findViewById(R.id.BuyCigarButton);
         buyButton.setOnClickListener(this);
 
-        sellButton = (Button) findViewById(R.id.sell);
+        sellButton = (Button) findViewById(R.id.SellCigarButton);
         sellButton.setOnClickListener(this);
 
 
@@ -89,10 +96,10 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
 
         switch (id)
         {
-            case R.id.buy:
+            case R.id.BuyCigarButton:
                 createShopPopup(BUY);
                 break;
-            case R.id.sell:
+            case R.id.SellCigarButton:
                 createShopPopup(SELL);
                 break;
             case R.id.location:
@@ -238,16 +245,42 @@ AlertDialog alert = builder.create();
 
          // Create Location List
        // String location = game.getLocations().getLocationArray();
-       String[] locations = {
-            "Ft. Lauderdale",
-            "Miami",
-            "Hialeah",
-            "Hollywood",
-            "Boca Raton"};
 
-        builder.setItems(locations, new LocationSelectionListener());
+
+        activeLocations = getLocationList(locations, game.getCurrentLocation());
+
+        builder.setItems(activeLocations, new LocationSelectionListener());
         AlertDialog alert = builder.create();
+
         builder.show();
+    }
+
+    private String[] getLocationList(String[] locations, String excludeID) {
+
+        int total = locations.length - 1;
+
+        if(game.getCurrentLocation() == locations[0])
+            total ++;
+
+        String[] locationList = new String[total];
+
+        int id = 0;
+
+        for (String location : locations)
+        {
+            if(excludeID != location)
+            {
+                locationList[id] = location;
+                id ++;
+            }
+            else if (excludeID == locations[0])
+            {
+                locationList[id] = "Bank";
+                id ++;
+            }
+        }
+
+        return locationList;  //To change body of created methods use File | Settings | File Templates.
     }
 
     public void onClick(DialogInterface dialogInterface, int i) {
@@ -339,8 +372,19 @@ AlertDialog alert = builder.create();
     private class LocationSelectionListener implements DialogInterface.OnClickListener {
 
         public void onClick(DialogInterface dialogInterface, int i) {
-            GameActivity.this.setCurrentLocation(i);
-            GameActivity.this.nextTurn();
+
+            if(activeLocations[i] == "Bank")
+            {
+                Intent myIntent = new Intent(getApplicationContext(), BankActivity.class);
+
+                startActivityForResult(myIntent, 0);
+            }
+            else
+            {
+                game.setCurrentLocation(activeLocations[i]);
+                GameActivity.this.nextTurn();
+            }
+
         }
 
     }

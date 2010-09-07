@@ -3,7 +3,7 @@ package com.gamecook.cigarsmuggler.activities;
 import android.app.TabActivity;
 import android.os.Bundle;
 import android.widget.TabHost;
-import com.gamecook.R;
+import com.gamecook.cigarsmuggler.R;
 
 /**
  * Created by IntelliJ IDEA.

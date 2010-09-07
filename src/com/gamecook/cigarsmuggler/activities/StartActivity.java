@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
-import com.gamecook.R;
+import com.gamecook.cigarsmuggler.R;
 import com.gamecook.fit.managers.SingletonManager;
 
 /**

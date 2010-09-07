@@ -21,7 +21,7 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
-import com.gamecook.R;
+import com.gamecook.cigarsmuggler.R;
 
 /**
  * This class exists purely to cancel long click events.

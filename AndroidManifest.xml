@@ -12,7 +12,7 @@
         <activity android:name=".activities.ScoresActivity" android:label="Scores"/>
         <activity android:name=".activities.CreditsActivity" android:label="Credits"/>
         <activity android:name=".activities.GameActivity" android:label="locations"/>
-        <activity android:name=".activities.BankActivity" android:label="bank"/>
         <activity android:name=".activities.GameOverActivity" android:label="GameOver"/>
+        <activity android:name=".activities.BankActivity" android:label="Bank"/>
     </application>
 </manifest>

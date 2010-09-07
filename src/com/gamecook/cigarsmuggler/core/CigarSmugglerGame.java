@@ -15,6 +15,15 @@ import com.gamecook.cigarsmuggler.items.Cigar;
  */
 public class CigarSmugglerGame extends AbstractGame {
 
+    private String currentLocation;
+
+    public String getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(String currentLocation) {
+        this.currentLocation = currentLocation;
+    }
 
     @Override
     public void startGame(int days) {
@@ -72,4 +81,5 @@ public class CigarSmugglerGame extends AbstractGame {
     public void reset() {
         //TODO configure game instances here
     }
+
 }
