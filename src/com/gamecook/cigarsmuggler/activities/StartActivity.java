@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.cigarsmuggler.R;
+import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.fit.managers.SingletonManager;
 
 /**
@@ -35,11 +35,10 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
 
         setContentView(R.layout.main);
 
-        
+
         /* Create button handlers */
 
         configureStartButton();
-
 
 
         Button scores = (Button) findViewById(R.id.Scores);
@@ -76,17 +75,15 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
 
         // Test to see if the Game Instance has been started. If so change
         // the text of the button
-        if(game.getGameStarted())
-        {
+        if (game.getGameStarted()) {
             start.setText("Continue Game");
         }
-        
+
         start.setOnClickListener(this);
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         configureStartButton();
     }
@@ -95,12 +92,9 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
 
     public void chooseDifficulty() {
 
-        if(game.getGameStarted())
-        {
+        if (game.getGameStarted()) {
             gotoGameScreen();
-        }
-        else
-        {
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Pick a difficulty");
 
@@ -117,7 +111,7 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
     public void onClick(DialogInterface dialogInterface, int i) {
 
         Toast.makeText(getApplicationContext(), "Starting New Game!", Toast.LENGTH_SHORT).show();
-        createNewGame(((difficultLevels.length - (i+1)) + 1) * TOTAL_DAYS);
+        createNewGame(((difficultLevels.length - (i + 1)) + 1) * TOTAL_DAYS);
 
     }
 

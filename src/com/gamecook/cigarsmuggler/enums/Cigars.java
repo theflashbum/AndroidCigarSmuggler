@@ -21,8 +21,7 @@ public enum Cigars {
     private final String name;
     private final int cost;
 
-    Cigars(String name, int cost)
-    {
+    Cigars(String name, int cost) {
         this.name = name;
         this.cost = cost;
     }

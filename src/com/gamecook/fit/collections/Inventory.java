@@ -3,7 +3,6 @@ package com.gamecook.fit.collections;
 import com.gamecook.fit.items.Item;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 
 
@@ -32,8 +31,7 @@ public class Inventory {
      * @return
      */
     public void add(Item item, int amount) {
-        if (inventory.containsKey(item.getName()))
-        {
+        if (inventory.containsKey(item.getName())) {
             addToItemTotal(item.getName(), amount);
             return;
         }
@@ -66,19 +64,13 @@ public class Inventory {
      * @return
      */
     public int removeFromInventory(Item id, int amount) {
-        if(!hasItem(id.getName()))
-        {
+        if (!hasItem(id.getName())) {
             return 0;
-        }
-        else
-        {
+        } else {
             int remainder = getItemTotal(id.getName()) - amount;
-            if(remainder <= 0)
-            {
+            if (remainder <= 0) {
                 remove(id.getName());
-            }
-            else
-            {
+            } else {
                 inventory.get(id.getName()).setTotal(remainder);
             }
 
@@ -107,18 +99,15 @@ public class Inventory {
         return tmpItem.getTotal();
     }
 
-    public Boolean hasItem(String name)
-    {
+    public Boolean hasItem(String name) {
         return inventory.containsKey(name);
     }
 
-    public String[] getInventoryAsArray()
-    {
+    public String[] getInventoryAsArray() {
         return convert(inventory);
     }
 
-    protected String[] convert(HashMap<String, Item> things)
-    {
+    protected String[] convert(HashMap<String, Item> things) {
         String[] tArray = things.keySet().toArray(new String[things.size()]);
         Arrays.sort(tArray);
         return tArray;

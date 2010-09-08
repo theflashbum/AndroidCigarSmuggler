@@ -1,10 +1,10 @@
 package com.gamecook.cigarsmuggler.core;
 
 import com.gamecook.cigarsmuggler.enums.Cigars;
+import com.gamecook.cigarsmuggler.items.Cigar;
 import com.gamecook.fit.AbstractGame;
 import com.gamecook.fit.collections.Store;
 import com.gamecook.fit.items.Item;
-import com.gamecook.cigarsmuggler.items.Cigar;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,6 +31,7 @@ public class CigarSmugglerGame extends AbstractGame {
         getCalendar().setDays(days);
         getWallet().setTotal(100);
         getBank().takeOutLoan(100);
+        getBank().set_interest(0.1299);
         createCigarInventory();
         gameStarted = true;
     }
@@ -73,7 +74,7 @@ public class CigarSmugglerGame extends AbstractGame {
     @Override
     public void nextTurn() {
         calendar.nextDay();
-        bank.nextDay(calendar.getDays(), calendar.getTotalDays());
+        bank.nextDay(1, 2);
         store.refresh();
     }
 

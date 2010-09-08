@@ -6,21 +6,18 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
-import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.cigarsmuggler.R;
+import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
+import com.gamecook.cigarsmuggler.items.Cigar;
 import com.gamecook.fit.collections.Inventory;
 import com.gamecook.fit.managers.SingletonManager;
-import com.gamecook.cigarsmuggler.items.Cigar;
 import com.quietlycoding.android.picker.NumberPicker;
-
-import java.lang.reflect.Array;
 
 /**
  * Created by IntelliJ IDEA.
@@ -33,7 +30,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
 
     private CigarSmugglerGame game = (CigarSmugglerGame) SingletonManager.getInstance().getClassReference(CigarSmugglerGame.class);
     private String[] cigarNames;
-     private Animation slideLeftIn;
+    private Animation slideLeftIn;
     private Animation slideLeftOut;
     private Animation slideRightIn;
     private Animation slideRightOut;
@@ -55,14 +52,14 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         super.onCreate(savedInstanceState);
 
         locations = new String[]{
-            "Ft. Lauderdale",
-            "Miami",
-            "Hialeah",
-            "Hollywood",
-            "Boca Raton",
-            };
+                "Ft. Lauderdale",
+                "Miami",
+                "Hialeah",
+                "Hollywood",
+                "Boca Raton",
+        };
 
-        if(game.getCurrentLocation() == null)
+        if (game.getCurrentLocation() == null)
             game.setCurrentLocation(locations[0]);
 
         setContentView(R.layout.game);
@@ -94,8 +91,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
     public void onClick(View view) {
         int id = view.getId();
 
-        switch (id)
-        {
+        switch (id) {
             case R.id.BuyCigarButton:
                 createShopPopup(BUY);
                 break;
@@ -115,15 +111,15 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         currentShopMode = type;
         String action = type == BUY ? "Buy" : "Sell";
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-builder.setMessage(action+" "+currentCigar.getName())
-       .setCancelable(false)
-       .setPositiveButton(action, new BuyClickHandler())
-       .setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
-           public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-           }
-       });
-AlertDialog alert = builder.create();
+        builder.setMessage(action + " " + currentCigar.getName())
+                .setCancelable(false)
+                .setPositiveButton(action, new BuyClickHandler())
+                .setNegativeButton("Cancle", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
 
         LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.purchase_alert, null);
@@ -131,18 +127,17 @@ AlertDialog alert = builder.create();
         alert.setView(layout);
 
         TextView description = (TextView) layout.findViewById(R.id.PurchaseDescription);
-        description.setText("This cigar is valued at "+currentCigar.getPrice()+" How many would you like to "+action.toLowerCase()+"?");
+        description.setText("This cigar is valued at " + currentCigar.getPrice() + " How many would you like to " + action.toLowerCase() + "?");
 
         shopTotal = (TextView) layout.findViewById(R.id.PurchaseTotalText);
 
 
         NumberPicker numberPicker = (NumberPicker) layout.findViewById(R.id.PurchaseNumberPicker);
 
-        if(type == BUY)
-        {
+        if (type == BUY) {
 
             // Configure range and current value
-            int maxPurchase = (int) Math.floor( game.getWallet().getTotal() / currentCigar.getPrice() );
+            int maxPurchase = (int) Math.floor(game.getWallet().getTotal() / currentCigar.getPrice());
 
             numberPicker.setRange(1, maxPurchase);
             numberPicker.setCurrent(maxPurchase);
@@ -150,11 +145,9 @@ AlertDialog alert = builder.create();
             numberPicker.setOnChangeListener(this);
             updateBuyValue(maxPurchase);
 
-        }
-        else
-        {
+        } else {
             // Configure range and current value
-            int maxSell = (int) Math.floor( inventory.getItemTotal(currentCigar.getName()));
+            int maxSell = (int) Math.floor(inventory.getItemTotal(currentCigar.getName()));
 
             numberPicker.setRange(1, maxSell);
             numberPicker.setCurrent(maxSell);
@@ -168,11 +161,9 @@ AlertDialog alert = builder.create();
 
     private void configureDialog(Dialog target, int type) {
 
-        if (type == BUY)
-        {
+        if (type == BUY) {
             target.setTitle("Buy Cigar");
-        }else if (type == SELL)
-        {
+        } else if (type == SELL) {
             target.setTitle("Sell Cigar");
         }
 
@@ -191,48 +182,45 @@ AlertDialog alert = builder.create();
 
     /**
      * Loads the next image
+     *
      * @param cigarID
      */
     public void showShopView(int cigarID) {
 
-            // Display Cigar Info
+        // Display Cigar Info
 
-            currentCigar = (Cigar) game.getStore().get(cigarNames[cigarID]);
+        currentCigar = (Cigar) game.getStore().get(cigarNames[cigarID]);
 
         toggleSellButton();
 
         TextView name = (TextView) findViewById(R.id.title);
-            name.setText(currentCigar.getName());
+        name.setText(currentCigar.getName());
 
-            TextView description = (TextView) findViewById(R.id.description);
-            description.setText(currentCigar.getDescription());
+        TextView description = (TextView) findViewById(R.id.description);
+        description.setText(currentCigar.getDescription());
 
-            viewFlipper.setInAnimation(slideLeftIn);
-            viewFlipper.setOutAnimation(slideLeftOut);
-            viewFlipper.showNext();
+        viewFlipper.setInAnimation(slideLeftIn);
+        viewFlipper.setOutAnimation(slideLeftOut);
+        viewFlipper.showNext();
 
     }
 
-    public void onBuySellUpdate()
-    {
+    public void onBuySellUpdate() {
         toggleSellButton();
         refreshDisplay();
     }
 
     private void toggleSellButton() {
-        if(inventory.hasItem(currentCigar.getName()))
-        {
+        if (inventory.hasItem(currentCigar.getName())) {
             //sellButton.setVisibility(View.VISIBLE);
             sellButton.setEnabled(true);
-        }
-        else
-        {
+        } else {
             sellButton.setEnabled(false);
             //sellButton.setVisibility(View.INVISIBLE);
         }
 
-        int maxPurchase = (int) Math.floor( game.getWallet().getTotal() / currentCigar.getPrice() );
-        if(maxPurchase > 0)
+        int maxPurchase = (int) Math.floor(game.getWallet().getTotal() / currentCigar.getPrice());
+        if (maxPurchase > 0)
             buyButton.setEnabled(true);
         else
             buyButton.setEnabled(false);
@@ -243,8 +231,8 @@ AlertDialog alert = builder.create();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Where do you want to go?");
 
-         // Create Location List
-       // String location = game.getLocations().getLocationArray();
+        // Create Location List
+        // String location = game.getLocations().getLocationArray();
 
 
         activeLocations = getLocationList(locations, game.getCurrentLocation());
@@ -259,24 +247,20 @@ AlertDialog alert = builder.create();
 
         int total = locations.length - 1;
 
-        if(game.getCurrentLocation() == locations[0])
-            total ++;
+        if (game.getCurrentLocation() == locations[0])
+            total++;
 
         String[] locationList = new String[total];
 
         int id = 0;
 
-        for (String location : locations)
-        {
-            if(excludeID != location)
-            {
+        for (String location : locations) {
+            if (excludeID != location) {
                 locationList[id] = location;
-                id ++;
-            }
-            else if (excludeID == locations[0])
-            {
+                id++;
+            } else if (excludeID == locations[0]) {
                 locationList[id] = "Bank";
-                id ++;
+                id++;
             }
         }
 
@@ -287,24 +271,20 @@ AlertDialog alert = builder.create();
 
     }
 
-    public void nextTurn()
-    {
+    public void nextTurn() {
         //TODO add in logic to change prices and refresh screen
 
         resetView();
 
-        if(game.getCalendar().hasNextDay())
-        {
+        if (game.getCalendar().hasNextDay()) {
             Toast.makeText(getApplicationContext(), "New Day", Toast.LENGTH_SHORT).show();
-            
+
             game.nextTurn();
-            
+
             Intent myIntent = new Intent(getApplicationContext(), GameActivity.class);
 
             startActivityForResult(myIntent, 0);
-        }
-        else
-        {
+        } else {
 
 
             Toast.makeText(getApplicationContext(), "You're Out Of Time!", Toast.LENGTH_SHORT).show();
@@ -314,27 +294,25 @@ AlertDialog alert = builder.create();
     }
 
     private void resetView() {
-        if(currentCigar != null)
-        {
+        if (currentCigar != null) {
             currentCigar = null;
             showCigarsView();
         }
     }
 
-    public void refreshDisplay()
-    {
+    public void refreshDisplay() {
         TextView daysLabel = (TextView) findViewById(R.id.days);
-        daysLabel.setText(game.getCalendar().getDays()+" Days Left");
+        daysLabel.setText(game.getCalendar().getDays() + " Days Left");
 
         TextView cashLabel = (TextView) findViewById(R.id.cash);
-        cashLabel.setText("Cash: "+game.getWallet().getTotal());
-                                                                   
-        ListView itemsList =(ListView)findViewById(R.id.items);
+        cashLabel.setText("Cash: " + game.getWallet().getTotal());
+
+        ListView itemsList = (ListView) findViewById(R.id.items);
 
         cigarNames = game.getStore().getInventoryAsArray();
 
         // By using setAdpater method in listview we an add string array in list.
-        itemsList.setAdapter(new ArrayAdapter<String>(this,R.layout.cigar_item_1 , cigarNames));
+        itemsList.setAdapter(new ArrayAdapter<String>(this, R.layout.cigar_item_1, cigarNames));
         itemsList.setOnItemClickListener(this);
 
     }
@@ -348,7 +326,7 @@ AlertDialog alert = builder.create();
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0 && viewFlipper.getDisplayedChild() == 1) {
             showCigarsView();
             return true;
@@ -363,7 +341,7 @@ AlertDialog alert = builder.create();
 
     private void updateBuyValue(int value) {
         tmpTotalToBuy = value;
-        shopTotal.setText("Total $"+Double.toString(currentCigar.getPrice() * value));
+        shopTotal.setText("Total $" + Double.toString(currentCigar.getPrice() * value));
     }
 
     /**
@@ -373,14 +351,11 @@ AlertDialog alert = builder.create();
 
         public void onClick(DialogInterface dialogInterface, int i) {
 
-            if(activeLocations[i] == "Bank")
-            {
+            if (activeLocations[i] == "Bank") {
                 Intent myIntent = new Intent(getApplicationContext(), BankActivity.class);
 
                 startActivityForResult(myIntent, 0);
-            }
-            else
-            {
+            } else {
                 game.setCurrentLocation(activeLocations[i]);
                 GameActivity.this.nextTurn();
             }
@@ -392,13 +367,10 @@ AlertDialog alert = builder.create();
 
     private class BuyClickHandler implements DialogInterface.OnClickListener {
         public void onClick(DialogInterface dialogInterface, int i) {
-            if(currentShopMode == BUY)
-            {
+            if (currentShopMode == BUY) {
                 game.getWallet().subtract(tmpTotalToBuy * currentCigar.getPrice());
                 inventory.add(currentCigar, tmpTotalToBuy);
-            }
-            else
-            {
+            } else {
                 game.getWallet().add(tmpTotalToBuy * currentCigar.getPrice());
                 inventory.removeFromInventory(currentCigar, tmpTotalToBuy);
             }

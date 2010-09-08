@@ -27,13 +27,16 @@ public abstract class AbstractGame {
     protected Boolean gameStarted = false;
 
     public abstract void startGame(int days);
+
     public abstract void endGame();
+
     public abstract void nextTurn();
+
     public abstract void reset();
-    
+
     public Boolean getGameStarted() {
         return gameStarted;
-    }                
+    }
 
     public Locations getLocations() {
         if (locations == null) locations = new Locations();
@@ -91,7 +94,7 @@ public abstract class AbstractGame {
 
 
     public Inventory getInventory() {
-        if(inventory == null) inventory = new Inventory();
+        if (inventory == null) inventory = new Inventory();
         return inventory;
     }
 

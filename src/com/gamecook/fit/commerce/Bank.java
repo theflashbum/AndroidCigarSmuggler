@@ -130,4 +130,12 @@ public class Bank {
     public void setRoundInterestCalculation(Boolean value) {
         _round = value;
     }
+
+    public double get_interest() {
+        return _interest;
+    }
+
+    public void set_interest(double _interest) {
+        this._interest = _interest;
+    }
 }

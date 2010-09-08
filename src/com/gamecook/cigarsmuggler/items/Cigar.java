@@ -10,7 +10,7 @@ import com.gamecook.fit.items.Item;
  * Time: 10:00:05 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Cigar extends AbstractItem{
+public class Cigar extends AbstractItem {
 
     public Cigar(String name) {
         super(name);

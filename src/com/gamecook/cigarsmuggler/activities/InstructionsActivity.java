@@ -22,6 +22,6 @@ public class InstructionsActivity extends Activity {
         TextView instructionText = (TextView) findViewById(R.id.instructionText);
         instructionText.setMovementMethod(new ScrollingMovementMethod());
 
-        
+
     }
 }

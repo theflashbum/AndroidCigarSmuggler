@@ -2,12 +2,9 @@ package com.gamecook.fit.collections;
 
 import com.gamecook.fit.items.Item;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
 
-public class Store extends Inventory{
+public class Store extends Inventory {
 
     /**
      * The Store represents a collection of items

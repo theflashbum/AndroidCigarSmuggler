@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import com.gamecook.cigarsmuggler.R;
 import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
-
 import com.gamecook.fit.managers.SingletonManager;
 
 /**
@@ -29,7 +28,7 @@ public class GameOverActivity extends Activity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             Intent myIntent = new Intent(getApplicationContext(), StartActivity.class);
             startActivityForResult(myIntent, 0);

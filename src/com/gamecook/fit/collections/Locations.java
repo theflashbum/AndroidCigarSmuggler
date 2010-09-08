@@ -1,7 +1,5 @@
 package com.gamecook.fit.collections;
 
-import android.widget.ArrayAdapter;
-
 import java.util.ArrayList;
 
 

@@ -12,7 +12,7 @@ import com.gamecook.fit.collections.Locations;
  * Time: 9:29:27 PM
  * To change this template use File | Settings | File Templates.
  */
-public class LocationsAdaptor extends BaseAdapter{
+public class LocationsAdaptor extends BaseAdapter {
 
     private Locations locations;
 

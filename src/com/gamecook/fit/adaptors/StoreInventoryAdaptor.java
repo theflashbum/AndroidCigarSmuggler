@@ -1,9 +1,7 @@
 package com.gamecook.fit.adaptors;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import com.gamecook.fit.collections.Store;
 
@@ -14,7 +12,7 @@ import com.gamecook.fit.collections.Store;
  * Time: 9:18:06 PM
  * To change this template use File | Settings | File Templates.
  */
-public class StoreInventoryAdaptor extends BaseAdapter{
+public class StoreInventoryAdaptor extends BaseAdapter {
 
     private Store store;
 
