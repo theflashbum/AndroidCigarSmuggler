@@ -10,13 +10,11 @@ package com.gamecook.fit.util;
 public class MoneyToStringUtil {
 
     /**
-     *
      * @param value
      * @param roundUp
      * @return
      */
-    public static String convertToString(Double value, Boolean roundUp)
-    {
+    public static String convertToString(Double value, Boolean roundUp) {
 
         String[] split = Double.toString(value).split("\\.");
 
@@ -24,13 +22,11 @@ public class MoneyToStringUtil {
     }
 
     /**
-     *
      * @param value
      * @param roundUp
      * @return
      */
-    public static String convertToString(int value, Boolean roundUp)
-    {
+    public static String convertToString(int value, Boolean roundUp) {
 
         String[] split = Integer.toString(value).split("\\.");
 
@@ -38,26 +34,20 @@ public class MoneyToStringUtil {
     }
 
     /**
-     *
      * @param split
      * @param roundUp
      * @return
      */
-    private static String cleanUpString(String[] split, Boolean roundUp)
-    {
-        String moneyString = "$"+split[0];
-        if(!roundUp)
-        {
+    private static String cleanUpString(String[] split, Boolean roundUp) {
+        String moneyString = "$" + split[0];
+        if (!roundUp) {
             String remainder = split[1];
-            if(remainder.length() == 1)
-            {
+            if (remainder.length() == 1) {
                 remainder.concat("0");
-            }
-            else if (remainder.length() < 2)
-            {
+            } else if (remainder.length() < 2) {
                 //TODO need to remove any "extra" values after the second number.
             }
-            moneyString.concat("."+remainder);
+            moneyString.concat("." + remainder);
         }
 
         return moneyString;

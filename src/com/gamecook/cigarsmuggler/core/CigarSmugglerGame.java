@@ -4,7 +4,6 @@ import com.gamecook.cigarsmuggler.collections.CigarSmugglerLocations;
 import com.gamecook.cigarsmuggler.enums.Cigars;
 import com.gamecook.cigarsmuggler.items.Cigar;
 import com.gamecook.fit.AbstractGame;
-import com.gamecook.fit.collections.Locations;
 import com.gamecook.fit.collections.Store;
 import com.gamecook.fit.items.Item;
 import com.gamecook.fit.time.Calendar;

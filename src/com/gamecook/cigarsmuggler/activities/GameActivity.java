@@ -12,8 +12,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.*;
 import com.gamecook.cigarsmuggler.R;
 import com.gamecook.cigarsmuggler.adapters.CigarAdapter;
@@ -67,14 +65,11 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         sellButton = (Button) findViewById(R.id.SellButton);
         sellButton.setOnClickListener(this);
 
-
         inventory = (Inventory) SingletonManager.getInstance().getClassReference(Inventory.class);
 
         toggleBuySellMode(BUY);
 
         refreshDisplay();
-
-
 
     }
 
@@ -94,7 +89,6 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         }
 
         refreshItemList();
-
 
     }
 
@@ -158,8 +152,6 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         } else if (type == SELL) {
             target.setTitle("Sell Cigar");
         }
-
-
     }
 
     public void onBuySellUpdate() {
@@ -188,18 +180,13 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Where do you want to go?");
 
-        // Create Location List
-        // String location = game.getLocations().getLocationArray();
-
-
-        activeLocations = ((CigarSmugglerLocations)game.getLocations()).getActiveLocations();
+        activeLocations = ((CigarSmugglerLocations) game.getLocations()).getActiveLocations();
 
         builder.setItems(activeLocations, new LocationSelectionListener());
         AlertDialog alert = builder.create();
 
         builder.show();
     }
-
 
 
     public void onClick(DialogInterface dialogInterface, int i) {
@@ -258,23 +245,22 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         // This should always be done inside a try catch.
         // Also this img is at the root of assets.
         try {
-              // Get reference to AssetManager
-              AssetManager mngr = getAssets();
+            // Get reference to AssetManager
+            AssetManager mngr = getAssets();
 
-              String imageFileName = "location_image_"+game.getLocations().getCurrentLocationID()+".png";
+            String imageFileName = "location_image_" + game.getLocations().getCurrentLocationID() + ".png";
 
-              // Create an input stream to read from the asset folder
-              InputStream ins = mngr.open(imageFileName);
+            // Create an input stream to read from the asset folder
+            InputStream ins = mngr.open(imageFileName);
 
-              // Convert the input stream into a bitmap
-              Bitmap img = BitmapFactory.decodeStream(ins);
+            // Convert the input stream into a bitmap
+            Bitmap img = BitmapFactory.decodeStream(ins);
 
-              locationImage.setImageBitmap(img);
+            locationImage.setImageBitmap(img);
 
         } catch (final IOException e) {
-              e.printStackTrace();
+            e.printStackTrace();
         }
-
 
 
     }
@@ -292,13 +278,11 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         itemsList.setDivider(null);
     }
 
-    public void toggleBuySellMode(int mode)
-    {
+    public void toggleBuySellMode(int mode) {
 
         buySellMode = mode;
 
-        switch (mode)
-        {
+        switch (mode) {
             case BUY:
                 buyButton.setEnabled(false);
                 sellButton.setEnabled(true);
@@ -309,6 +293,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
                 break;
         }
     }
+
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
         currentCigar = (Cigar) game.getStore().get(cigarNames[i]);

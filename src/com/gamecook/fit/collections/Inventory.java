@@ -1,5 +1,6 @@
 package com.gamecook.fit.collections;
 
+import android.util.Log;
 import com.gamecook.fit.items.Item;
 
 import java.util.Arrays;
@@ -68,12 +69,10 @@ public class Inventory {
             return 0;
         } else {
             int remainder = getItemTotal(id.getName()) - amount;
+            inventory.get(id.getName()).setTotal(remainder);
             if (remainder <= 0) {
                 remove(id.getName());
-            } else {
-                inventory.get(id.getName()).setTotal(remainder);
             }
-
             return remainder;
         }
 

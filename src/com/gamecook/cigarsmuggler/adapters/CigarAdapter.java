@@ -4,14 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.cigarsmuggler.items.Cigar;
 import com.gamecook.cigarsmuggler.views.CigarAdapterView;
 import com.gamecook.fit.collections.Inventory;
 import com.gamecook.fit.collections.Store;
-import com.gamecook.fit.managers.SingletonManager;
-
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,7 +16,7 @@ import java.util.List;
  * Time: 8:33:57 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CigarAdapter extends BaseAdapter{
+public class CigarAdapter extends BaseAdapter {
 
     private Context context;
     private Store store;
@@ -62,19 +58,16 @@ public class CigarAdapter extends BaseAdapter{
 
         Cigar cigar = (Cigar) getItem(position);
 
-        if(buySellMode == "buy")
-        {
-            if(cigar.getPrice() < cash)
+        if (buySellMode == "buy") {
+            if (cigar.getPrice() < cash)
                 return true;
-             else
+            else
                 return false;
 
-        }
-        else
-        {
-            if(cigar.getTotal() > 0)
+        } else {
+            if (cigar.getTotal() > 0)
                 return true;
-             else
+            else
                 return false;
 
         }

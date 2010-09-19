@@ -65,8 +65,7 @@ public class BankActivity extends Activity implements View.OnClickListener, Numb
         refreshLabels();
     }
 
-    private void refreshLabels()
-    {
+    private void refreshLabels() {
         TextView debtText = (TextView) findViewById(R.id.debtLabelText);
         debtText.setText(MoneyToStringUtil.convertToString(bank.getLoan(), true));
 
@@ -76,12 +75,9 @@ public class BankActivity extends Activity implements View.OnClickListener, Numb
         TextView savingsText = (TextView) findViewById(R.id.savingsLabelText);
         savingsText.setText(MoneyToStringUtil.convertToString(bank.getSavings(), true));
 
-        if(bank.getLoan() > 0)
-        {
+        if (bank.getLoan() > 0) {
             getLoanButton.setEnabled(false);
-        }
-        else
-        {
+        } else {
             getLoanButton.setEnabled(true);
         }
     }
@@ -141,7 +137,9 @@ public class BankActivity extends Activity implements View.OnClickListener, Numb
         switch (type) {
             case DEPOSIT:
             case REPAY_LOAN:
-                max = (int) wallet.getTotal();
+                max = (int) bank.getLoan();
+                if(max > wallet.getTotal())
+                    max = (int) wallet.getTotal();
                 break;
             case WITHDRAW:
                 max = (int) bank.getSavings();

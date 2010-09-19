@@ -9,7 +9,7 @@ import com.gamecook.fit.collections.Locations;
  * Time: 1:22:13 PM
  * To change this template use File | Settings | File Templates.
  */
-public class CigarSmugglerLocations extends Locations{
+public class CigarSmugglerLocations extends Locations {
 
     public int getHomeLocation() {
         return homeLocation;

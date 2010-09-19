@@ -32,9 +32,9 @@ public class CigarAdapterView extends LinearLayout {
 
         mainView = inflate(context, R.layout.cigar_view, null);
 
-		((TextView)mainView.findViewById(R.id.CigarNameLabel)).setText(cigar.getName());
-		((TextView)mainView.findViewById(R.id.CostTotalText)).setText(MoneyToStringUtil.convertToString(cigar.getPrice(), true) + "/" + Integer.toString(cigar.getTotal()));
-		((TextView)mainView.findViewById(R.id.DescriptionText)).setText(cigar.getDescription());
+        ((TextView) mainView.findViewById(R.id.CigarNameLabel)).setText(cigar.getName());
+        ((TextView) mainView.findViewById(R.id.CostTotalText)).setText(MoneyToStringUtil.convertToString(cigar.getPrice(), true) + "/" + Integer.toString(cigar.getTotal()));
+        ((TextView) mainView.findViewById(R.id.DescriptionText)).setText(cigar.getDescription());
 
         addView(mainView);
     }
