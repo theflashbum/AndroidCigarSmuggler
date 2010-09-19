@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 
 public class Locations {
-    protected int _currentLocation;
-    private int lastID;
-    private ArrayList<String> locations = new ArrayList<String>();
+    protected int currentLocation;
+    protected int lastID;
+    protected ArrayList<String> locations = new ArrayList<String>();
 
     /**
      * The map represent a collection of locations.
@@ -30,12 +30,12 @@ public class Locations {
      * @param id
      */
     public String gotoLocationByID(int id) {
-        if (_currentLocation >= 0)
-            lastID = _currentLocation;
+        if (currentLocation >= 0)
+            lastID = currentLocation;
 
-        _currentLocation = id;
+        currentLocation = id;
 
-        return locations.get(_currentLocation);
+        return locations.get(currentLocation);
     }
 
     /**
@@ -44,7 +44,7 @@ public class Locations {
      * @return
      */
     public String getCurrentLocation() {
-        return locations.get(_currentLocation);
+        return locations.get(currentLocation);
     }
 
     /**
@@ -70,8 +70,12 @@ public class Locations {
         return locations.size();
     }
 
-    /*public ArrayAdapter<String> getLocationArray() {
+    //TODO this needs a unit test
+    public void gotoLocationByName(String name) {
+        gotoLocationByID(locations.indexOf(name));
+    }
 
-        return new ArrayAdapter<String>(locations);
-    }*/
+    public int getCurrentLocationID() {
+        return currentLocation;
+    }
 }

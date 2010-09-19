@@ -5,6 +5,9 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -13,11 +16,17 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
 import com.gamecook.cigarsmuggler.R;
+import com.gamecook.cigarsmuggler.adapters.CigarAdapter;
+import com.gamecook.cigarsmuggler.collections.CigarSmugglerLocations;
 import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.cigarsmuggler.items.Cigar;
 import com.gamecook.fit.collections.Inventory;
 import com.gamecook.fit.managers.SingletonManager;
+import com.gamecook.fit.util.MoneyToStringUtil;
 import com.quietlycoding.android.picker.NumberPicker;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,11 +39,6 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
 
     private CigarSmugglerGame game = (CigarSmugglerGame) SingletonManager.getInstance().getClassReference(CigarSmugglerGame.class);
     private String[] cigarNames;
-    private Animation slideLeftIn;
-    private Animation slideLeftOut;
-    private Animation slideRightIn;
-    private Animation slideRightOut;
-    private ViewFlipper viewFlipper;
     private Button buyButton;
     private Button sellButton;
     private static final int BUY = 1;
@@ -45,45 +49,31 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
     private int tmpTotalToBuy;
     private int currentShopMode;
     private String[] activeLocations;
-    private String[] locations;
+    private ImageView locationImage;
+    private int buySellMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        locations = new String[]{
-                "Ft. Lauderdale",
-                "Miami",
-                "Hialeah",
-                "Hollywood",
-                "Boca Raton",
-        };
-
-        if (game.getCurrentLocation() == null)
-            game.setCurrentLocation(locations[0]);
-
         setContentView(R.layout.game);
 
-        Button location = (Button) findViewById(R.id.location);
-        location.setOnClickListener(this);
+        locationImage = (ImageView) findViewById(R.id.LocationImage);
+        locationImage.setOnClickListener(this);
 
-        viewFlipper = (ViewFlipper) findViewById(R.id.flipper);
-
-        slideLeftIn = AnimationUtils.loadAnimation(this, R.anim.slide_left_in);
-        slideLeftOut = AnimationUtils.loadAnimation(this, R.anim.slide_left_out);
-        slideRightIn = AnimationUtils.loadAnimation(this, R.anim.slide_right_in);
-        slideRightOut = AnimationUtils.loadAnimation(this, R.anim.slide_right_out);
-
-        buyButton = (Button) findViewById(R.id.BuyCigarButton);
+        buyButton = (Button) findViewById(R.id.BuyButton);
         buyButton.setOnClickListener(this);
 
-        sellButton = (Button) findViewById(R.id.SellCigarButton);
+        sellButton = (Button) findViewById(R.id.SellButton);
         sellButton.setOnClickListener(this);
 
 
         inventory = (Inventory) SingletonManager.getInstance().getClassReference(Inventory.class);
 
+        toggleBuySellMode(BUY);
+
         refreshDisplay();
+
 
 
     }
@@ -92,16 +82,18 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         int id = view.getId();
 
         switch (id) {
-            case R.id.BuyCigarButton:
-                createShopPopup(BUY);
+            case R.id.BuyButton:
+                toggleBuySellMode(BUY);
                 break;
-            case R.id.SellCigarButton:
-                createShopPopup(SELL);
+            case R.id.SellButton:
+                toggleBuySellMode(SELL);
                 break;
-            case R.id.location:
+            case R.id.LocationImage:
                 chooseNewLocation();
                 break;
         }
+
+        refreshItemList();
 
 
     }
@@ -127,7 +119,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         alert.setView(layout);
 
         TextView description = (TextView) layout.findViewById(R.id.PurchaseDescription);
-        description.setText("This cigar is valued at " + currentCigar.getPrice() + " How many would you like to " + action.toLowerCase() + "?");
+        description.setText("This cigar is valued at " + MoneyToStringUtil.convertToString(currentCigar.getPrice(), true) + ". How many would you like to " + action.toLowerCase() + "?");
 
         shopTotal = (TextView) layout.findViewById(R.id.PurchaseTotalText);
 
@@ -170,41 +162,6 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
 
     }
 
-
-    /**
-     * Loads the previous image
-     */
-    public void showCigarsView() {
-        viewFlipper.setInAnimation(slideRightIn);
-        viewFlipper.setOutAnimation(slideRightOut);
-        viewFlipper.showPrevious();
-    }
-
-    /**
-     * Loads the next image
-     *
-     * @param cigarID
-     */
-    public void showShopView(int cigarID) {
-
-        // Display Cigar Info
-
-        currentCigar = (Cigar) game.getStore().get(cigarNames[cigarID]);
-
-        toggleSellButton();
-
-        TextView name = (TextView) findViewById(R.id.title);
-        name.setText(currentCigar.getName());
-
-        TextView description = (TextView) findViewById(R.id.description);
-        description.setText(currentCigar.getDescription());
-
-        viewFlipper.setInAnimation(slideLeftIn);
-        viewFlipper.setOutAnimation(slideLeftOut);
-        viewFlipper.showNext();
-
-    }
-
     public void onBuySellUpdate() {
         toggleSellButton();
         refreshDisplay();
@@ -235,7 +192,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         // String location = game.getLocations().getLocationArray();
 
 
-        activeLocations = getLocationList(locations, game.getCurrentLocation());
+        activeLocations = ((CigarSmugglerLocations)game.getLocations()).getActiveLocations();
 
         builder.setItems(activeLocations, new LocationSelectionListener());
         AlertDialog alert = builder.create();
@@ -243,29 +200,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         builder.show();
     }
 
-    private String[] getLocationList(String[] locations, String excludeID) {
 
-        int total = locations.length - 1;
-
-        if (game.getCurrentLocation() == locations[0])
-            total++;
-
-        String[] locationList = new String[total];
-
-        int id = 0;
-
-        for (String location : locations) {
-            if (excludeID != location) {
-                locationList[id] = location;
-                id++;
-            } else if (excludeID == locations[0]) {
-                locationList[id] = "Bank";
-                id++;
-            }
-        }
-
-        return locationList;  //To change body of created methods use File | Settings | File Templates.
-    }
 
     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -296,43 +231,88 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
     private void resetView() {
         if (currentCigar != null) {
             currentCigar = null;
-            showCigarsView();
+            //showCigarsView();
         }
     }
 
     public void refreshDisplay() {
-        TextView daysLabel = (TextView) findViewById(R.id.days);
-        daysLabel.setText(game.getCalendar().getDays() + " Days Left");
 
-        TextView cashLabel = (TextView) findViewById(R.id.cash);
-        cashLabel.setText("Cash: " + game.getWallet().getTotal());
+        // Days Left
+        ((TextView) findViewById(R.id.DaysLeftText)).setText(Integer.toString(game.getCalendar().getDays()));
 
-        ListView itemsList = (ListView) findViewById(R.id.items);
+        // Days Total
+        ((TextView) findViewById(R.id.DaysTotalText)).setText(Integer.toString(game.getCalendar().getTotalDays()));
+
+        // Cash
+        ((TextView) findViewById(R.id.CashText)).setText(MoneyToStringUtil.convertToString(game.getWallet().getTotal(), true));
+
+        // Debt
+        ((TextView) findViewById(R.id.DebtText)).setText(MoneyToStringUtil.convertToString(game.getBank().getLoan(), true));
+
+        // Savings
+        ((TextView) findViewById(R.id.SavingsText)).setText(MoneyToStringUtil.convertToString(game.getBank().getSavings(), true));
+
+
+        refreshItemList();
+
+        // This should always be done inside a try catch.
+        // Also this img is at the root of assets.
+        try {
+              // Get reference to AssetManager
+              AssetManager mngr = getAssets();
+
+              String imageFileName = "location_image_"+game.getLocations().getCurrentLocationID()+".png";
+
+              // Create an input stream to read from the asset folder
+              InputStream ins = mngr.open(imageFileName);
+
+              // Convert the input stream into a bitmap
+              Bitmap img = BitmapFactory.decodeStream(ins);
+
+              locationImage.setImageBitmap(img);
+
+        } catch (final IOException e) {
+              e.printStackTrace();
+        }
+
+
+
+    }
+
+    private void refreshItemList() {
 
         cigarNames = game.getStore().getInventoryAsArray();
 
         // By using setAdpater method in listview we an add string array in list.
-        itemsList.setAdapter(new ArrayAdapter<String>(this, R.layout.cigar_item_1, cigarNames));
-        itemsList.setOnItemClickListener(this);
+        CigarAdapter adapter = new CigarAdapter(this, game.getStore(), game.getInventory(), game.getWallet().getTotal(), buySellMode == BUY ? "buy" : "sell");
 
+        ListView itemsList = (ListView) findViewById(R.id.items);
+        itemsList.setAdapter(adapter);
+        itemsList.setOnItemClickListener(this);
+        itemsList.setDivider(null);
     }
 
+    public void toggleBuySellMode(int mode)
+    {
+
+        buySellMode = mode;
+
+        switch (mode)
+        {
+            case BUY:
+                buyButton.setEnabled(false);
+                sellButton.setEnabled(true);
+                break;
+            case SELL:
+                buyButton.setEnabled(true);
+                sellButton.setEnabled(false);
+                break;
+        }
+    }
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-        showShopView(i);
-        /*Intent myIntent = new ViewCigarIntent(getApplicationContext(), ItemDetailActivity.class, cigarNames[i]);
-
-        startActivityForResult(myIntent, 0);*/
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0 && viewFlipper.getDisplayedChild() == 1) {
-            showCigarsView();
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
+        currentCigar = (Cigar) game.getStore().get(cigarNames[i]);
+        createShopPopup(buySellMode);
     }
 
     public void onChanged(NumberPicker picker, int oldVal, int newVal) {
@@ -341,7 +321,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
 
     private void updateBuyValue(int value) {
         tmpTotalToBuy = value;
-        shopTotal.setText("Total $" + Double.toString(currentCigar.getPrice() * value));
+        shopTotal.setText("Total " + MoneyToStringUtil.convertToString(currentCigar.getPrice() * value, true));
     }
 
     /**
@@ -364,7 +344,6 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
 
     }
 
-
     private class BuyClickHandler implements DialogInterface.OnClickListener {
         public void onClick(DialogInterface dialogInterface, int i) {
             if (currentShopMode == BUY) {
@@ -377,5 +356,15 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
 
             GameActivity.this.onBuySellUpdate();
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Intent myIntent = new Intent(getApplicationContext(), StartActivity.class);
+
+        startActivityForResult(myIntent, 0);
+
+        return false;
+
     }
 }

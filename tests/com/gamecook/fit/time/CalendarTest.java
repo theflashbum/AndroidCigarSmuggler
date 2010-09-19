@@ -53,7 +53,7 @@ public class CalendarTest{
     }
 
     @Test
-    public void testTotaldays()
+    public void testTotalDays()
     {
         Calendar cal = new Calendar(10);
         cal.nextDay();

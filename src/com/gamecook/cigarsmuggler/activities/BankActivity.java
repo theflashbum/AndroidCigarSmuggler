@@ -13,6 +13,7 @@ import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.fit.commerce.Bank;
 import com.gamecook.fit.commerce.Wallet;
 import com.gamecook.fit.managers.SingletonManager;
+import com.gamecook.fit.util.MoneyToStringUtil;
 import com.quietlycoding.android.picker.NumberPicker;
 
 
@@ -67,13 +68,13 @@ public class BankActivity extends Activity implements View.OnClickListener, Numb
     private void refreshLabels()
     {
         TextView debtText = (TextView) findViewById(R.id.debtLabelText);
-        debtText.setText(Double.toString(bank.getLoan()));
+        debtText.setText(MoneyToStringUtil.convertToString(bank.getLoan(), true));
 
         TextView cashText = (TextView) findViewById(R.id.cashLabelText);
-        cashText.setText(Double.toString(wallet.getTotal()));
+        cashText.setText(MoneyToStringUtil.convertToString(wallet.getTotal(), true));
 
         TextView savingsText = (TextView) findViewById(R.id.savingsLabelText);
-        savingsText.setText(Double.toString(bank.getSavings()));
+        savingsText.setText(MoneyToStringUtil.convertToString(bank.getSavings(), true));
 
         if(bank.getLoan() > 0)
         {

@@ -1,10 +1,13 @@
 package com.gamecook.cigarsmuggler.core;
 
+import com.gamecook.cigarsmuggler.collections.CigarSmugglerLocations;
 import com.gamecook.cigarsmuggler.enums.Cigars;
 import com.gamecook.cigarsmuggler.items.Cigar;
 import com.gamecook.fit.AbstractGame;
+import com.gamecook.fit.collections.Locations;
 import com.gamecook.fit.collections.Store;
 import com.gamecook.fit.items.Item;
+import com.gamecook.fit.time.Calendar;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,24 +18,24 @@ import com.gamecook.fit.items.Item;
  */
 public class CigarSmugglerGame extends AbstractGame {
 
-    private String currentLocation;
-
     public String getCurrentLocation() {
-        return currentLocation;
+        return locations.getCurrentLocation();
     }
 
-    public void setCurrentLocation(String currentLocation) {
-        this.currentLocation = currentLocation;
+    public void setCurrentLocation(String name) {
+        locations.gotoLocationByName(name);
     }
 
     @Override
     public void startGame(int days) {
         reset();
-        getCalendar().setDays(days);
+        setCalendar(new Calendar(days));
         getWallet().setTotal(100);
         getBank().takeOutLoan(100);
         getBank().set_interest(0.1299);
         createCigarInventory();
+        setLocations(new CigarSmugglerLocations());
+
         gameStarted = true;
     }
 

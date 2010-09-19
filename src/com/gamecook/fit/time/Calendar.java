@@ -1,9 +1,9 @@
 package com.gamecook.fit.time;
 
 public class Calendar {
-    private int _days;
+    private int days;
 
-    private int _totalDays;
+    private int totalDays;
 
     /**
      * This is a simple turn managing class. Each
@@ -13,7 +13,7 @@ public class Calendar {
      * @param days
      */
     public Calendar(int days) {
-        _days = _totalDays = days;
+        this.days = totalDays = days;
     }
 
     /**
@@ -23,7 +23,7 @@ public class Calendar {
      * @return
      */
     public int getDays() {
-        return _days;
+        return days;
     }
 
     /**
@@ -33,7 +33,7 @@ public class Calendar {
      * @param value
      */
     public void setDays(int value) {
-        _days = value;
+        days = value;
     }
 
     /**
@@ -43,7 +43,17 @@ public class Calendar {
      * @return
      */
     public int getTotalDays() {
-        return _totalDays;
+        return totalDays;
+    }
+
+    /**
+     * Sets total Days
+     *
+     * @param value
+     * @return
+     */
+    public int setTotalDays(int value) {
+        return totalDays;
     }
 
     /**
@@ -52,14 +62,14 @@ public class Calendar {
      * @return
      */
     public Boolean hasNextDay() {
-        return _days < 1 ? false : true;
+        return days < 1 ? false : true;
     }
 
     /**
      * Decreases the number of days by 1
      */
     public void nextDay() {
-        _days -= 1;
+        days -= 1;
     }
 
 }

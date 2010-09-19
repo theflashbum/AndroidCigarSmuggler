@@ -104,6 +104,7 @@ public class Inventory {
     }
 
     public String[] getInventoryAsArray() {
+        //TODO this needs to have some sort of invalidation
         return convert(inventory);
     }
 

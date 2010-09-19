@@ -28,4 +28,7 @@ public class Store extends Inventory {
         }
     }
 
+    public Object getItemByID(int i) {
+        return get(getInventoryAsArray()[i]);
+    }
 }

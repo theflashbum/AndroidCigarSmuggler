@@ -2,17 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.gamecook.cigarsmuggler">
     <application android:icon="@drawable/icon" android:label="CigarSmuggler">
-        <activity android:name=".activities.StartActivity">
+        <activity android:name=".activities.StartActivity" android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.InstructionsActivity" android:label="Instructions"/>
-        <activity android:name=".activities.ScoresActivity" android:label="Scores"/>
-        <activity android:name=".activities.CreditsActivity" android:label="Credits"/>
-        <activity android:name=".activities.GameActivity" android:label="locations"/>
-        <activity android:name=".activities.GameOverActivity" android:label="GameOver"/>
-        <activity android:name=".activities.BankActivity" android:label="Bank"/>
+        <activity android:name=".activities.InstructionsActivity" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".activities.ScoresActivity" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".activities.CreditsActivity" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".activities.GameActivity" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".activities.GameOverActivity" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".activities.BankActivity" android:theme="@android:style/Theme.NoTitleBar"/>
     </application>
 </manifest>
