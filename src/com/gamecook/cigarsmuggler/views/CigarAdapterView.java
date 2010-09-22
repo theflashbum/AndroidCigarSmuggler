@@ -2,6 +2,7 @@ package com.gamecook.cigarsmuggler.views;
 
 import android.content.Context;
 import android.view.View;
+import android.view.animation.*;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.gamecook.cigarsmuggler.R;
@@ -37,5 +38,16 @@ public class CigarAdapterView extends LinearLayout {
         ((TextView) mainView.findViewById(R.id.DescriptionText)).setText(cigar.getDescription());
 
         addView(mainView);
+    }
+
+    public void isEnabled(Boolean value)
+    {
+
+        Float newAlpha = value ? 1.0f : 0.3f;
+
+        Animation animation = new AlphaAnimation(1.0f, newAlpha);
+        animation.setDuration(0);
+        animation.setFillAfter(true);
+        mainView.startAnimation(animation);
     }
 }

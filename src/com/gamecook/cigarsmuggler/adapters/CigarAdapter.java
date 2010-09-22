@@ -49,8 +49,11 @@ public class CigarAdapter extends BaseAdapter {
 
         Cigar cigar = (Cigar) getItem(i);
 
-        //TODO need to pass in total from inventory
-        return new CigarAdapterView(context, cigar);
+        CigarAdapterView cigarView = new CigarAdapterView(context, cigar);
+
+        cigarView.isEnabled(isEnabled(i));
+
+        return cigarView;
     }
 
     @Override

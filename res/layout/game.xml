@@ -156,10 +156,14 @@
             android:layout_below="@id/LocationImage"
             android:layout_alignParentRight="true">
         <Button
+                android:background="@android:color/transparent"
                 android:id="@+id/BuyButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Buy" />
+                android:text="Buy"
+                android:textColor="#ffffff"
+                android:textSize="26px"
+                />
 
 
         <TextView
@@ -172,10 +176,14 @@
                 android:text="/"/>
 
         <Button
+                android:background="@android:color/transparent"
                 android:id="@+id/SellButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sell"/>
+                android:text="Sell"
+                android:textColor="#ffffff"
+                android:textSize="26px"
+                />
 
 
     </LinearLayout>

@@ -285,11 +285,15 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         switch (mode) {
             case BUY:
                 buyButton.setEnabled(false);
+                buyButton.setTextColor(0xffffff20);
                 sellButton.setEnabled(true);
+                sellButton.setTextColor(0xffffffff);
                 break;
             case SELL:
                 buyButton.setEnabled(true);
+                buyButton.setTextColor(0xffffffff);
                 sellButton.setEnabled(false);
+                sellButton.setTextColor(0xffffff20);
                 break;
         }
     }

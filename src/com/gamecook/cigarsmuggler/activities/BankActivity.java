@@ -77,9 +77,13 @@ public class BankActivity extends Activity implements View.OnClickListener, Numb
 
         if (bank.getLoan() > 0) {
             getLoanButton.setEnabled(false);
+            repayLoanButton.setEnabled(true);
         } else {
             getLoanButton.setEnabled(true);
+            repayLoanButton.setEnabled(false);
         }
+
+
     }
 
     public void onClick(View view) {
