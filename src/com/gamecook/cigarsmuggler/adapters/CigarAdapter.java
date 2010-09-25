@@ -62,6 +62,11 @@ public class CigarAdapter extends BaseAdapter {
         Cigar cigar = (Cigar) getItem(position);
 
         if (buySellMode == "buy") {
+
+            //Test to see if there is room in inventory for item
+            if(inventory.getTotalLeft() < 1)
+                return false;
+
             if (cigar.getPrice() < cash)
                 return true;
             else

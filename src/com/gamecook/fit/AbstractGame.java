@@ -94,7 +94,7 @@ public abstract class AbstractGame {
 
 
     public Inventory getInventory() {
-        if (inventory == null) inventory = new Inventory();
+        if (inventory == null) inventory = new Inventory(100);
         return inventory;
     }
 

@@ -65,7 +65,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         sellButton = (Button) findViewById(R.id.SellButton);
         sellButton.setOnClickListener(this);
 
-        inventory = (Inventory) SingletonManager.getInstance().getClassReference(Inventory.class);
+        inventory = game.getInventory();
 
         toggleBuySellMode(BUY);
 
@@ -124,6 +124,9 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
 
             // Configure range and current value
             int maxPurchase = (int) Math.floor(game.getWallet().getTotal() / currentCigar.getPrice());
+
+            if(maxPurchase > inventory.getTotalLeft())
+                maxPurchase = inventory.getTotalLeft();
 
             numberPicker.setRange(1, maxPurchase);
             numberPicker.setCurrent(maxPurchase);
@@ -344,6 +347,8 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
             }
 
             GameActivity.this.onBuySellUpdate();
+
+            //TODO there needs to be a check in the inventory that if there is no inventory left, switch back to buy mode
         }
     }
 

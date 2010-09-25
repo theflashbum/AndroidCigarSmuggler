@@ -13,7 +13,7 @@ public class Store extends Inventory {
      * fluctuation in price.
      */
     public Store() {
-
+        super(-1);
     }
 
     /**

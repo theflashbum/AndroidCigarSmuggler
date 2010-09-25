@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertEquals;
 
 /**
  * Created by IntelliJ IDEA.
@@ -105,5 +106,24 @@ public class AbstractItemTest extends AbstractItem {
     @Override
     public Item clone(String name) {
         return null;
+    }
+
+    @Test
+    public void testHistory()
+    {
+        int total = 5;
+        int i;
+
+        //Populate prices
+        for (i = 0; i < total; i++)
+        {
+            setPrice(i * 10);
+        }
+
+        for (i = 0; i < total; i++)
+        {
+            double price = getPriceHistory().get(i);
+            assertEquals(price, ((double)i * 10));
+        }
     }
 }

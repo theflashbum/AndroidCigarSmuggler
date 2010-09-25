@@ -1,5 +1,7 @@
 package com.gamecook.fit.items;
 
+import java.util.ArrayList;
+
 /**
  * Created by IntelliJ IDEA.
  * User: jfreeman
@@ -16,6 +18,8 @@ public abstract class AbstractItem implements Item {
     protected String description = "";
     protected int total;
 
+    protected ArrayList<Double> priceHistory;
+
     /**
      * An Abstract class to represent an Item that can be used
      * with FiT. Items can randomly generate their price based
@@ -27,6 +31,7 @@ public abstract class AbstractItem implements Item {
      */
     public AbstractItem(String name) {
         this.name = name;
+        priceHistory = new ArrayList<Double>();
     }
 
     /**
@@ -77,6 +82,7 @@ public abstract class AbstractItem implements Item {
      */
     public void setPrice(double value) {
         price = value < 0 ? 0 : value;
+        priceHistory.add(price);
     }
 
     /**
@@ -148,5 +154,9 @@ public abstract class AbstractItem implements Item {
      * @return
      */
     abstract public Item clone(String name);
+
+    public ArrayList<Double> getPriceHistory() {
+        return priceHistory;
+    }
 
 }
