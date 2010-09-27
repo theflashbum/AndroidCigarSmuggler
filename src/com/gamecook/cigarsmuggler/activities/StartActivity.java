@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,14 @@ import android.widget.Toast;
 import com.gamecook.cigarsmuggler.R;
 import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.fit.managers.SingletonManager;
+import com.openfeint.api.OpenFeint;
+import com.openfeint.api.OpenFeintDelegate;
+import com.openfeint.api.OpenFeintSettings;
+import com.openfeint.api.ui.Dashboard;
+import com.openfeint.internal.OpenFeintInternal;
+import com.openfeint.internal.ui.WebViewCache;
+
+import static com.gamecook.utils.StringFromResourceUtil.getStringResourceByName;
 
 /**
  * Created by IntelliJ IDEA.
@@ -36,35 +45,38 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
         setContentView(R.layout.main);
 
 
+        OpenFeintSettings settings = new OpenFeintSettings(getResources().getString(R.string.of_name),
+                                                           getResources().getString(R.string.of_key),
+                                                           getResources().getString(R.string.of_secret),
+                                                           getResources().getString(R.string.of_id));
+
+        OpenFeint.initialize(this, settings, new OpenFeintDelegate() { });
+
         /* Create button handlers */
 
         configureStartButton();
 
-
         Button scores = (Button) findViewById(R.id.Scores);
         scores.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), ScoresActivity.class);
-                startActivityForResult(myIntent, 0);
+                Dashboard.openLeaderboards();
             }
 
         });
 
-        Button instructions = (Button) findViewById(R.id.Instructions);
-        instructions.setOnClickListener(new View.OnClickListener() {
+        Button achievements = (Button) findViewById(R.id.Achievements);
+        achievements.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), InstructionsActivity.class);
-                startActivityForResult(myIntent, 0);
+                Dashboard.openAchievements();
             }
-
         });
 
-        Button credits = (Button) findViewById(R.id.Credits);
-        credits.setOnClickListener(new View.OnClickListener() {
+        Button debug = (Button) findViewById(R.id.Logout);
+        debug.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), CreditsActivity.class);
-                startActivityForResult(myIntent, 0);
+                Dashboard.open();
             }
+
         });
     }
 
@@ -86,6 +98,8 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
     public void onResume() {
         super.onResume();
         configureStartButton();
+        OpenFeint.setCurrentActivity(this);
+    	WebViewCache.resync();
     }
 
     final CharSequence[] difficultLevels = {"Easy (90 days)", "Medium (60 Days)", "Hard (30 Days)"};

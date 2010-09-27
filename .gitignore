@@ -3,5 +3,10 @@ Thumbs.db
 .DS_Store
 *.iml
 
+openfeint_values.xml
+
 bin/*
 gen/*
+.classpath
+.project
+.projecte

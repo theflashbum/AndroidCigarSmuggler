@@ -1,0 +1,44 @@
+<!-- Inject obfuscation support via ProGuard into the build process	-->
+
+<target name="clean-classes" unless="noobfuscate">
+	<delete dir="${out.classes.dir}"/>
+</target>
+
+<target name="check-for-proguard">
+	<available file="proguard/lib/proguard.jar" property="proguard.available"/>
+</target>
+
+<!-- "obfuscate" target performs the obfuscation of application classes and OpenFeint classes. It must run before -dex. -->
+<target name="obfuscate" depends="check-for-proguard" unless="noobfuscate" if="proguard.available">
+	<!-- Prepare the input: jar bin/classes into ./AppClasses.jar and move libs/OpenFeint.jar to ./OpenFeint.jar -->
+	<jar basedir="${out.classes.dir}" destfile="AppClasses.jar"/>
+	<copy file="libs/OpenFeint.jar" tofile="OpenFeint.jar"/>
+
+	<!-- Invoke ProGuard
+		Output jars AppClasses.jar and OpenFeint.jar will end up in libs/ -->
+	<java jar="proguard/lib/proguard.jar" fork="true" failonerror="true">
+		<jvmarg value="-Dmaximum.inlined.code.length=16"/>
+		<arg value="@proguard-config.txt"/>
+		<arg value="-injars OpenFeint.jar(!META-INF/MANIFEST.MF):AppClasses.jar(!META-INF/MANIFEST.MF,!**/*R.java)"/>
+		<arg value="-outjars libs"/>
+		<arg value="-libraryjars ${android.jar}"/>
+	</java>
+
+	<!-- Clean out bin/classes then unzip AppClasses.jar into the bin/classes. -->
+	<delete dir="${out.classes.dir}"/>
+	<mkdir dir="${out.classes.dir}"/>
+	<unzip src="libs/AppClasses.jar" dest="${out.classes.dir}"/>
+
+	<!-- Remove stale AppClasses jars -->
+	<delete file="AppClasses.jar"/>
+	<delete file="libs/AppClasses.jar"/>
+</target>
+
+<!-- "-dex" target is a copy of the android_rules.xml target. 
+	It has been modified to run clean-classes before compiling, obfuscation after compiling,
+	and finally clean-up the obfuscated OpenFeint jar after dex-ing. -->
+<target name="-dex" depends="clean-classes,compile,obfuscate">
+	<dex-helper />
+	<!-- Move the original OpenFeint.jar into libs/ to overwrite the potentially obfuscated OpenFeint.jar -->
+	<move file="OpenFeint.jar" tofile="libs/OpenFeint.jar" failonerror="false"/>
+</target>

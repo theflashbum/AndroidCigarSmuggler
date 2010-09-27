@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/HudLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="80dip"
+        android:background="@drawable/wood_texture">
+    <LinearLayout
+            android:id="@+id/CashLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="2dip">
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:layout_width="70dip"
+                android:layout_height="wrap_content"
+                android:textColor="#8c8a8c"
+                android:textSize="26dip"
+                android:gravity="right"
+                android:id="@+id/CashLabel"
+                android:text="Cash"/>
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:textSize="26dip"
+                android:id="@+id/CashText"
+                android:text="$999,999"
+                android:layout_marginLeft="5dip"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/DebtLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/CashLayout"
+            >
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:layout_width="70dip"
+                android:layout_height="wrap_content"
+                android:textColor="#8c8a8c"
+                android:textSize="20dip"
+                android:gravity="right"
+                android:id="@+id/DebtLabel"
+                android:text="Debt"/>
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffa3a3"
+                android:textSize="20dip"
+                android:id="@+id/DebtText"
+                android:layout_marginLeft="5dip"
+                android:text="$999"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/SavingsLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/DebtLayout">
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:layout_width="70dip"
+                android:layout_height="wrap_content"
+                android:textColor="#8c8a8c"
+                android:textSize="20dip"
+                android:id="@+id/SavingsLabel"
+                android:text="Savings"
+                android:gravity="right"/>
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#aeffa3"
+                android:textSize="20dip"
+                android:id="@+id/SavingsText"
+                android:text="$999"
+                android:layout_marginLeft="5dip"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/DaysLeftLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="2dip"
+            android:layout_marginBottom="-5dip">
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textColor="#ffffff"
+                android:textSize="46dip"
+                android:id="@+id/DaysLeftText"
+                android:text="90"/>
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:paddingLeft="2dip"
+                 android:paddingRight="2dip"
+                android:textColor="#8c8a8c"
+                android:textSize="46dip"
+                android:id="@+id/DaysLeftDivider"
+                android:text="/"/>
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textColor="#ffffff"
+                android:textSize="46dip"
+                android:id="@+id/DaysTotalText"
+                android:text="90"/>
+
+    </LinearLayout>
+
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/DaysLeftLayout"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dip"
+
+                android:textColor="#8c8a8c"
+                android:textSize="12dip"
+                android:id="@+id/DaysLabel"
+                android:text="Days  /  Total Days"/>
+
+</RelativeLayout>

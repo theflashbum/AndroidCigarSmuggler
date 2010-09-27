@@ -1,0 +1,21 @@
+-target 1.6 
+-optimizationpasses 2 
+-dontusemixedcaseclassnames 
+-dontskipnonpubliclibraryclasses 
+-dontpreverify 
+-flattenpackagehierarchy com.a.a
+-keepattributes InnerClasses,EnclosingMethod
+
+-optimizations !code/simplification/arithmetic 
+
+-keep class com.openfeint.internal.ui.WebNav { <methods>; }
+-keep class com.openfeint.internal.ui.WebNav$* { <methods>; }
+
+-keep class * extends com.openfeint.internal.ui.WebNav$ActionHandler { <methods>; }
+
+-keep public class R*
+-keep public class * extends android.app.Activity 
+-keep public class * extends android.app.Application 
+-keep public class * extends android.app.Service 
+-keep public class * extends android.content.BroadcastReceiver 
+-keep public class * extends android.content.ContentProvider 

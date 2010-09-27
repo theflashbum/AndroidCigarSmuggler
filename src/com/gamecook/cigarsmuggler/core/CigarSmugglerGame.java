@@ -85,4 +85,7 @@ public class CigarSmugglerGame extends AbstractGame {
         //TODO configure game instances here
     }
 
+    public int getScore() {
+        return (int) ((int) (wallet.getTotal() + bank.getSavings()) - bank.getLoan());
+    }
 }

@@ -21,7 +21,7 @@ import com.gamecook.cigarsmuggler.items.Cigar;
 import com.gamecook.fit.collections.Inventory;
 import com.gamecook.fit.managers.SingletonManager;
 import com.gamecook.fit.util.MoneyToStringUtil;
-import com.quietlycoding.android.picker.NumberPicker;
+import com.gamecook.cigarsmuggler.views.NumberPicker;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -288,7 +288,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         switch (mode) {
             case BUY:
                 buyButton.setEnabled(false);
-                buyButton.setTextColor(0xffffff20);
+                buyButton.setTextColor(0x50ffffff);
                 sellButton.setEnabled(true);
                 sellButton.setTextColor(0xffffffff);
                 break;
@@ -296,7 +296,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
                 buyButton.setEnabled(true);
                 buyButton.setTextColor(0xffffffff);
                 sellButton.setEnabled(false);
-                sellButton.setTextColor(0xffffff20);
+                sellButton.setTextColor(0x50ffffff);
                 break;
         }
     }
@@ -324,7 +324,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         public void onClick(DialogInterface dialogInterface, int i) {
 
             if (activeLocations[i] == "Bank") {
-                Intent myIntent = new Intent(getApplicationContext(), BankActivity.class);
+                Intent myIntent = new Intent(getApplicationContext(), Safe.class);
 
                 startActivityForResult(myIntent, 0);
             } else {

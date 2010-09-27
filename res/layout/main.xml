@@ -1,41 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:background="#000000">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="#050415">
 
-    <TextView
+    <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+            android:id="@+id/Title"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="36px"
+            android:textSize="56dip"
             android:text="Cigar Smuggler"/>
 
-    <Button android:text="Start"
-            android:id="@+id/Start"
-            android:textSize="18px"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-    </Button>
-    <Button android:text="Instructions"
-            android:id="@+id/Instructions"
-            android:textSize="18px"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-    </Button>
-    <Button android:text="High Scores"
-            android:id="@+id/Scores"
-            android:textSize="18px"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-    </Button>
-    <Button android:text="Credits"
-            android:id="@+id/Credits"
-            android:textSize="18px"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-    </Button>
-</LinearLayout>
+    <LinearLayout
+            android:id="@+id/StartButtonLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Title"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:layout_marginTop="10dip">
 
-        
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerButton android:text="Start Smuggling"
+                android:id="@+id/Start"
+                android:textSize="26dip"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:textColor="#ffffff">
+        </com.gamecook.cigarsmuggler.views.CigarSmugglerButton>
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerButton android:text="High Scores"
+                android:id="@+id/Scores"
+                android:textSize="26dip"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:textColor="#ffffff">
+        </com.gamecook.cigarsmuggler.views.CigarSmugglerButton>
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerButton android:text="Achievements"
+                android:id="@+id/Achievements"
+                android:textSize="26dip"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:textColor="#ffffff">
+        </com.gamecook.cigarsmuggler.views.CigarSmugglerButton>
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerButton android:text="Open Feint Profile"
+                android:id="@+id/Logout"
+                android:textSize="26dip"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:textColor="#ffffff">
+        </com.gamecook.cigarsmuggler.views.CigarSmugglerButton>
+    </LinearLayout>
+
+     <ImageView
+            android:id="@+id/StartBackgroundImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/StartButtonLayout"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/start_background"/>
+</RelativeLayout>
+

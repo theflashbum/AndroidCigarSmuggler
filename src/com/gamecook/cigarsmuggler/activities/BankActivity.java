@@ -7,14 +7,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import com.gamecook.cigarsmuggler.R;
 import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.fit.commerce.Bank;
 import com.gamecook.fit.commerce.Wallet;
 import com.gamecook.fit.managers.SingletonManager;
-import com.gamecook.fit.util.MoneyToStringUtil;
-import com.quietlycoding.android.picker.NumberPicker;
+import com.gamecook.cigarsmuggler.views.NumberPicker;
 
 
 /**
@@ -66,14 +64,14 @@ public class BankActivity extends Activity implements View.OnClickListener, Numb
     }
 
     private void refreshLabels() {
-        TextView debtText = (TextView) findViewById(R.id.debtLabelText);
+        /*TextView debtText = (TextView) findViewById(R.id.debtLabelText);
         debtText.setText(MoneyToStringUtil.convertToString(bank.getLoan(), true));
 
         TextView cashText = (TextView) findViewById(R.id.cashLabelText);
         cashText.setText(MoneyToStringUtil.convertToString(wallet.getTotal(), true));
 
         TextView savingsText = (TextView) findViewById(R.id.savingsLabelText);
-        savingsText.setText(MoneyToStringUtil.convertToString(bank.getSavings(), true));
+        savingsText.setText(MoneyToStringUtil.convertToString(bank.getSavings(), true));*/
 
         if (bank.getLoan() > 0) {
             getLoanButton.setEnabled(false);

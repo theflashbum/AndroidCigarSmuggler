@@ -7,13 +7,13 @@
 
     <ImageView
             android:id="@+id/CigarLabelImage"
-            android:layout_width="20px"
-            android:layout_height="70px"
+            android:layout_width="20dip"
+            android:layout_height="70dip"
             android:background="#296dd6"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10px"
+            android:layout_marginLeft="10dip"
             />
 
 
@@ -24,30 +24,32 @@
               android:typeface="sans"
               android:textSize="20sp"
               android:layout_toRightOf="@id/CigarLabelImage"
-              android:layout_marginTop="5px"
-              android:layout_marginLeft="10px"
+              android:layout_marginTop="5dip"
+              android:layout_marginLeft="10dip"
             />
 
-     <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="0"
-                  android:id="@+id/CostTotalText"
-                  android:textSize="20sp"
-             android:layout_alignParentRight="true"
-             android:layout_alignParentTop="true"
-             android:layout_marginTop="5px"
-             />
+    <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:id="@+id/CostTotalText"
+            android:textSize="20sp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dip"
+            />
 
-    <TextView android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="This is a description."
-                  android:id="@+id/DescriptionText"
-                  android:textSize="13sp"
+    <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is a description."
+            android:id="@+id/DescriptionText"
+            android:textSize="13sp"
             android:layout_below="@id/CigarNameLabel"
             android:ellipsize="end"
             android:singleLine="true"
             android:layout_toRightOf="@id/CigarLabelImage"
-              android:layout_marginLeft="10px"
+            android:layout_marginLeft="10dip"
             />
 
     <ImageView

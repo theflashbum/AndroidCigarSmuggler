@@ -1,72 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
+              android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:background="#ffffff">
+              android:orientation="vertical"
+              android:background="#ffffff">
 
     <TextView
             android:id="@+id/debtLabel"
             android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:text="Debt"/>
+            android:layout_height="wrap_content"
+            android:text="Debt"/>
     <TextView
-        android:id="@+id/debtLabelText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+            android:id="@+id/debtLabelText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:text="$0.00"/>
 
     <TextView
-        android:id="@+id/cashLabel"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Cash"/>
+            android:id="@+id/cashLabel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Cash"/>
     <TextView
-        android:id="@+id/cashLabelText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="$0.00"/>
-
-    <TextView
-        android:id="@+id/savingsLabel"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Savings"/>
-    <TextView
-        android:id="@+id/savingsLabelText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="$0.00"/>
-
-    <Button
-        android:id="@+id/depositButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Deposit"/>
-
-    <Button
-        android:id="@+id/withdrawButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Withdraw"/>
-
-    <Button
-        android:id="@+id/repayLoanButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Repay Loan"/>
-
-    <Button
-        android:id="@+id/getLoan"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Get A Loan"/>
+            android:id="@+id/cashLabelText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="$0.00"/>
 
     <TextView
-        android:id="@+id/moneyHistory"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Financial History"/>
+            android:id="@+id/savingsLabel"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Savings"/>
+    <TextView
+            android:id="@+id/savingsLabelText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="$0.00"/>
+
+    <Button
+            android:id="@+id/depositButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Deposit"/>
+
+    <Button
+            android:id="@+id/withdrawButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Withdraw"/>
+
+    <Button
+            android:id="@+id/repayLoanButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Repay Loan"/>
+
+    <Button
+            android:id="@+id/getLoan"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Get A Loan"/>
+
+    <TextView
+            android:id="@+id/moneyHistory"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Financial History"/>
 
 </LinearLayout>

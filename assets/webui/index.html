@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta content='text/html; charset=utf-8' http-equiv='content-type'>
+    <meta content='initial-scale=1.0; maximum-scale=1.0; user-scalable=0;' name='viewport'>
+    <script type="text/javascript">
+      (function() {
+        var scripts = ['jquery', 'template', 'webui'];
+        var stylesheets = ['webui'];
+
+        var i;
+        var cacheBuster = new Date().getTime();
+
+        for (i = 0; i < scripts.length; i++) {
+          document.write('<script type="text/javascript" src="javascripts/'+ scripts[i] +'.js?'+ cacheBuster +'"></scr'+'ipt>');
+        }
+
+        for (i = 0; i < stylesheets.length; i++) {        
+          document.write('<link media="screen" rel="stylesheet" type="text/css" href="stylesheets/'+ stylesheets[i] +'.css?'+ cacheBuster +'">');
+        }
+        
+      })();
+    </script>
+  </head>
+  <body>
+    <div id='page'></div>
+    <iframe id="google_analytics_frame" src="/webui/analytics.html" width="99" height="1"></iframe>
+  </body>
+</html>

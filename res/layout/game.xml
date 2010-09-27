@@ -4,135 +4,15 @@
                 android:id="@+id/game_display"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="#000000">
+                android:background="#050415">
 
-    <RelativeLayout
-            android:id="@+id/HudLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="80px"
-            android:background="@drawable/wood_texture">
-        <LinearLayout
-                android:id="@+id/CashLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="5px">
+    <include android:id='@+id/HudLayout' layout='@layout/game_status'/>
 
-            <TextView
-                    android:layout_width="70px"
-                    android:layout_height="wrap_content"
-                    android:textColor="#8c8a8c"
-                    android:textSize="20px"
-                    android:gravity="right"
-                    android:id="@+id/CashLabel"
-                    android:text="Cash"/>
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffffff"
-                    android:textSize="20px"
-                    android:id="@+id/CashText"
-                    android:text="$999,999"
-                    android:layout_marginLeft="5px"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/DebtLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/CashLayout"
-                >
-
-            <TextView
-                    android:layout_width="70px"
-                    android:layout_height="wrap_content"
-                    android:textColor="#8c8a8c"
-                    android:textSize="16px"
-                    android:gravity="right"
-                    android:id="@+id/DebtLabel"
-                    android:text="Debt"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffa3a3"
-                    android:textSize="16px"
-                    android:id="@+id/DebtText"
-                    android:layout_marginLeft="5px"
-                    android:text="$999"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/SavingsLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/DebtLayout">
-
-            <TextView
-                    android:layout_width="70px"
-                    android:layout_height="wrap_content"
-                    android:textColor="#8c8a8c"
-                    android:textSize="16px"
-                    android:id="@+id/SavingsLabel"
-                    android:text="Savings"
-                    android:gravity="right"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#aeffa3"
-                    android:textSize="16px"
-                    android:id="@+id/SavingsText"
-                    android:text="$999"
-                    android:layout_marginLeft="5px"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-                android:id="@+id/DaysLeftLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="5px">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="#ffffff"
-                    android:textSize="40px"
-                    android:id="@+id/DaysLeftText"
-                    android:text="90"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="#8c8a8c"
-                    android:textSize="40px"
-                    android:id="@+id/DaysLeftDivider"
-                    android:text="/"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textColor="#ffffff"
-                    android:textSize="40px"
-                    android:id="@+id/DaysTotalText"
-                    android:text="90"/>
-
-        </LinearLayout>
-        </RelativeLayout>
     <ImageView
             android:id="@+id/LocationImage"
             android:layout_width="fill_parent"
-            android:layout_height="60px"
+            android:layout_height="60dip"
             android:background="#ff0000"
             android:layout_below="@id/HudLayout"
             android:clickable="true"
@@ -140,12 +20,12 @@
             />
 
 
-    <TextView
+    <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/LocationImage"
             android:textColor="#ffffff"
-            android:textSize="36px"
+            android:textSize="36dip"
             android:id="@+id/CigarLabelImage"
             android:text="CIGARS"/>
 
@@ -155,34 +35,35 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/LocationImage"
             android:layout_alignParentRight="true">
-        <Button
-                android:background="@android:color/transparent"
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerButton
                 android:id="@+id/BuyButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Buy"
+                android:background="@android:color/transparent"
                 android:textColor="#ffffff"
-                android:textSize="26px"
+                android:textSize="26dip"
                 />
 
 
-        <TextView
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
                 android:textColor="#8c8a8c"
-                android:textSize="30px"
+                android:textSize="30dip"
                 android:id="@+id/BuySellDivider"
                 android:text="/"/>
 
-        <Button
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerButton
                 android:background="@android:color/transparent"
                 android:id="@+id/SellButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Sell"
                 android:textColor="#ffffff"
-                android:textSize="26px"
+                android:textSize="26dip"
                 />
 
 
@@ -195,4 +76,5 @@
             android:layout_below="@id/CigarLabelImage"
             android:id="@+id/items"
             android:cacheColorHint="#00000000"/>
+
 </RelativeLayout>

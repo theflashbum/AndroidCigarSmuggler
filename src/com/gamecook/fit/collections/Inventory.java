@@ -1,6 +1,5 @@
 package com.gamecook.fit.collections;
 
-import android.util.Log;
 import com.gamecook.fit.items.Item;
 
 import java.util.Arrays;

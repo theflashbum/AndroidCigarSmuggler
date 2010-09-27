@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/SafeLayout"
+                android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical"
+              android:background="#050415">
+
+
+    <include android:id='@+id/HudLayout' layout='@layout/game_status'/>
+
+
+
+    <LinearLayout
+            android:id="@+id/BankButtonLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/HudLayout"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:layout_marginTop="20dip">
+
+    <com.gamecook.cigarsmuggler.views.CigarSmugglerButton
+            android:id="@+id/depositButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Deposit"
+            android:background="@android:color/transparent"
+                android:textColor="#ffffff"
+                android:textSize="26dip"/>
+
+    <com.gamecook.cigarsmuggler.views.CigarSmugglerButton
+            android:id="@+id/withdrawButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Withdraw"
+            android:background="@android:color/transparent"
+                android:textColor="#ffffff"
+                android:textSize="26dip"/>
+
+    <com.gamecook.cigarsmuggler.views.CigarSmugglerButton
+            android:id="@+id/repayLoanButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Repay Loan"
+            android:background="@android:color/transparent"
+                android:textColor="#ffffff"
+                android:textSize="26dip"/>
+
+    <com.gamecook.cigarsmuggler.views.CigarSmugglerButton
+            android:id="@+id/getLoan"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Get A Loan"
+            android:background="@android:color/transparent"
+                android:textColor="#ffffff"
+                android:textSize="26dip"/>
+
+     </LinearLayout>
+
+         <ImageView
+            android:id="@+id/StartBackgroundImage"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/BankButtonLayout"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/safe_background"/>
+
+</RelativeLayout>

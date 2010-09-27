@@ -2,7 +2,8 @@ package com.gamecook.cigarsmuggler.views;
 
 import android.content.Context;
 import android.view.View;
-import android.view.animation.*;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.gamecook.cigarsmuggler.R;

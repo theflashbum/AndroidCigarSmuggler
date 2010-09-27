@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.widget.Toast;
 import com.gamecook.cigarsmuggler.R;
 import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.fit.managers.SingletonManager;
+import com.openfeint.api.resource.Leaderboard;
+import com.openfeint.api.resource.Score;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,7 +26,6 @@ public class GameOverActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gameover);
-
         game.endGame();
     }
 
@@ -36,5 +38,35 @@ public class GameOverActivity extends Activity {
         }
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void submitScore() {
+        String scoreBoardID;
+
+        switch (game.getCalendar().getTotalDays()) {
+            default:
+                scoreBoardID = "498393";
+        }
+
+        int scoreValue = game.getScore();
+        Score s = new Score(scoreValue, null); // Second parameter is null to indicate that custom display text is not used.
+        Leaderboard l = new Leaderboard(scoreBoardID);
+        s.submitTo(l, new Score.SubmitToCB() {
+            @Override
+            public void onSuccess(boolean newHighScore) {
+                // sweet, pop the thingerydingery
+                GameOverActivity.this.setResult(Activity.RESULT_OK);
+                GameOverActivity.this.finish();
+            }
+
+            @Override
+            public void onFailure(String exceptionMessage) {
+                Toast.makeText(GameOverActivity.this,
+                        "Error (" + exceptionMessage + ") posting score.",
+                        Toast.LENGTH_SHORT).show();
+                GameOverActivity.this.setResult(Activity.RESULT_CANCELED);
+                GameOverActivity.this.finish();
+            }
+        });
     }
 }
