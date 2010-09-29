@@ -48,15 +48,13 @@ public class HistoryGraphView extends View {
             int barHeight;
             int barBottom;
             Double lastValue = 0.0;
-            int index = 0;
-            int maxBars = getWidth()/(graphBarWidth + graphBarPadding);
-            //int startIndex = getWidth()
-            if (total >  maxBars)
-            {
-                index = total - maxBars;
-            }
 
-            for(int i = index; i < total; i ++)
+            int barWidth = graphBarWidth + graphBarPadding;
+            int maxBars = getWidth()/barWidth;
+
+            int startIndex = total > maxBars ? (total - maxBars) : 0;
+
+            for(int i = startIndex; i < total; i ++)
             {
 
                 value = values.get(i);
@@ -79,7 +77,7 @@ public class HistoryGraphView extends View {
 
 
                 canvas.drawRect(nextX, barHeight, nextX+graphBarWidth, barBottom, myPaint);
-                nextX = (graphBarWidth + graphBarPadding) * (i+1);
+                nextX = barWidth * ((i-startIndex)+1);
                 lastValue = value;
 
 
