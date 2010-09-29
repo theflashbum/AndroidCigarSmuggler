@@ -4,10 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.gamecook.cigarsmuggler.R;
 import com.gamecook.cigarsmuggler.core.CigarSmugglerGame;
 import com.gamecook.fit.managers.SingletonManager;
+import com.gamecook.fit.util.MoneyToStringUtil;
 import com.openfeint.api.resource.Leaderboard;
 import com.openfeint.api.resource.Score;
 
@@ -18,7 +22,7 @@ import com.openfeint.api.resource.Score;
  * Time: 9:33:54 PM
  * To change this template use File | Settings | File Templates.
  */
-public class GameOverActivity extends Activity {
+public class GameOverActivity extends Activity implements View.OnClickListener {
 
     private CigarSmugglerGame game = (CigarSmugglerGame) SingletonManager.getInstance().getClassReference(CigarSmugglerGame.class);
 
@@ -27,6 +31,18 @@ public class GameOverActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gameover);
         game.endGame();
+
+        Button submit = (Button) findViewById(R.id.SubmitScore);
+        submit.setOnClickListener(this);
+        refreshDisplay();
+    }
+
+    private void refreshDisplay() {
+
+        ((TextView) findViewById(R.id.DifficultyText)).setText(game.difficultyToString());
+
+
+        ((TextView) findViewById(R.id.ScoreText)).setText(Integer.toString(game.getScore()));
     }
 
     @Override
@@ -55,8 +71,10 @@ public class GameOverActivity extends Activity {
             @Override
             public void onSuccess(boolean newHighScore) {
                 // sweet, pop the thingerydingery
-                GameOverActivity.this.setResult(Activity.RESULT_OK);
-                GameOverActivity.this.finish();
+                /*GameOverActivity.this.setResult(Activity.RESULT_OK);
+                GameOverActivity.this.finish();*/
+                Intent myIntent = new Intent(getApplicationContext(), StartActivity.class);
+                startActivityForResult(myIntent, 0);
             }
 
             @Override
@@ -64,9 +82,13 @@ public class GameOverActivity extends Activity {
                 Toast.makeText(GameOverActivity.this,
                         "Error (" + exceptionMessage + ") posting score.",
                         Toast.LENGTH_SHORT).show();
-                GameOverActivity.this.setResult(Activity.RESULT_CANCELED);
-                GameOverActivity.this.finish();
+                /*GameOverActivity.this.setResult(Activity.RESULT_CANCELED);
+                GameOverActivity.this.finish();*/
             }
         });
+    }
+
+    public void onClick(View view) {
+        submitScore();
     }
 }

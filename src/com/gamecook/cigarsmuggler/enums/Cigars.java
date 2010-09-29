@@ -26,7 +26,13 @@ public enum Cigars {
         this.cost = cost;
     }
 
-    public int cost() {
+    public int getCost() {
         return cost;
     }
+
+    public String getName()
+    {
+        return name;
+    }
+
 }

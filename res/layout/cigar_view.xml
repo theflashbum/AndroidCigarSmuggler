@@ -8,16 +8,15 @@
     <ImageView
             android:id="@+id/CigarLabelImage"
             android:layout_width="20dip"
-            android:layout_height="70dip"
+            android:layout_height="50dip"
             android:background="#296dd6"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
             android:layout_marginLeft="10dip"
             />
 
 
-    <TextView android:layout_height="wrap_content"
+    <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView android:layout_height="wrap_content"
               android:layout_width="fill_parent"
               android:id="@+id/CigarNameLabel"
               android:text="Name"
@@ -52,12 +51,13 @@
             android:layout_marginLeft="10dip"
             />
 
-    <ImageView
+    <com.gamecook.cigarsmuggler.views.HistoryGraphView
             android:id="@+id/HistoryGraphImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/cigar_history_graph"
+            android:layout_width="100dip"
+            android:layout_height="14dip"
+            android:layout_below="@id/DescriptionText"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/DescriptionText"/>
+            android:layout_marginTop="5dip"
+            />
 
 </RelativeLayout>

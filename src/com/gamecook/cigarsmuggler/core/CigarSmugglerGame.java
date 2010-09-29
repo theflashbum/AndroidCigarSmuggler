@@ -17,6 +17,9 @@ import com.gamecook.fit.time.Calendar;
  */
 public class CigarSmugglerGame extends AbstractGame {
 
+    private int difficultyLevel;
+    private static final int BASE_DAYS = 30;
+
     public String getCurrentLocation() {
         return locations.getCurrentLocation();
     }
@@ -25,8 +28,17 @@ public class CigarSmugglerGame extends AbstractGame {
         locations.gotoLocationByName(name);
     }
 
+    public int getDifficultyLevel() {
+        return difficultyLevel;
+    }
+
     @Override
-    public void startGame(int days) {
+    public void startGame(int difficultyLevel) {
+
+        this.difficultyLevel = difficultyLevel;
+
+        int days = ((3 - (difficultyLevel + 1)) + 1) * BASE_DAYS;
+
         reset();
         setCalendar(new Calendar(days));
         getWallet().setTotal(100);
@@ -59,10 +71,16 @@ public class CigarSmugglerGame extends AbstractGame {
 
     private Item createCigar(Cigars cigars, double min, double max, String description) {
 
-        Item item = new Cigar(cigars.name());
+        Item item = new Cigar(cigars.getName());
         item.setMinPrice(min);
         item.setMaxPrice(max);
         item.setDescription(description);
+
+        int history = 25;
+        for (int i = 0; i < history; i ++)
+        {
+            item.generateNewPrice();
+        }
 
         return item;
     }
@@ -87,5 +105,19 @@ public class CigarSmugglerGame extends AbstractGame {
 
     public int getScore() {
         return (int) ((int) (wallet.getTotal() + bank.getSavings()) - bank.getLoan());
+    }
+
+    public String difficultyToString() {
+        switch (difficultyLevel)
+        {
+        case 1:
+            return "EASY";
+        case 2:
+            return "Medium";
+        case 3:
+            return "Hard";
+        }
+
+        return "None";
     }
 }

@@ -39,6 +39,12 @@ public class CigarAdapterView extends LinearLayout {
         ((TextView) mainView.findViewById(R.id.DescriptionText)).setText(cigar.getDescription());
 
         addView(mainView);
+
+        HistoryGraphView graph = (HistoryGraphView) findViewById(R.id.HistoryGraphImage);
+
+        //int[] history = new int[]{0,15,0,5,10,6,10,1,15,18,0,15,0,5,10,6,10,1,15,18,0,15,0,5,10,6,10,1,15,18};
+
+        graph.generateGraph(cigar.getPriceHistory());
     }
 
     public void isEnabled(Boolean value)

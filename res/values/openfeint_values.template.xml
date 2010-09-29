@@ -1,6 +1,0 @@
-<resources>
-    <string name="of_name">Name</string>
-    <string name="of_key">Key</string>
-    <string name="of_secret">Secret Key</string>
-    <string name="of_id">Id</string>
-</resources>

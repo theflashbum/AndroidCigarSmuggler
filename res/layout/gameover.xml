@@ -1,21 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:background="#ffffff">
+              android:background="#000000">
 
-    <TextView
+
+    <LinearLayout
+            android:id="@+id/GameOverLayout"
+            android:layout_alignParentTop="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="#000000"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical"
+            android:layout_marginTop="10dip"
+            >
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+            android:id="@+id/GameOverMessage"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="56dip"
             android:text="Game Over"/>
 
-    <Button
-            android:id="@+id/SubmitScore"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Submit Score"/>
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:id="@+id/DifficultyLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#8c8a8c"
+                android:textSize="26dip"
+                android:text="Difficulty"/>
 
-</LinearLayout>
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:id="@+id/DifficultyText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:textSize="32dip"
+                android:gravity="center"
+                android:text="Easy"/>
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:id="@+id/ScoreLabel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#8c8a8c"
+                android:textSize="26dip"
+                android:gravity="center"
+                android:text="Your Score"
+                android:layout_marginTop="5dip"/>
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+                android:id="@+id/ScoreText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:textSize="32dip"
+                android:gravity="center"
+                android:text="999"/>
+
+        <com.gamecook.cigarsmuggler.views.CigarSmugglerButton
+                android:id="@+id/SubmitScore"
+                    android:layout_below="@id/GameOverMessage"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Submit Score"
+                    android:background="@android:color/transparent"
+                    android:textColor="#ffffff"
+                    android:textSize="36dip"
+                    android:layout_marginTop="10dip"
+                    />
+
+        </LinearLayout>
+
+       <ImageView
+        android:id="@+id/GameOverBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/GameOverLayout"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/city_background"
+        android:scaleType="centerCrop"
+        />
+</RelativeLayout>
