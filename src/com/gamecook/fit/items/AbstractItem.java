@@ -1,6 +1,7 @@
 package com.gamecook.fit.items;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by IntelliJ IDEA.
@@ -121,7 +122,9 @@ public abstract class AbstractItem implements Item {
      */
     public double generateNewPrice() {
 
-        setPrice(minPrice + (int) (Math.random() * maxPrice));
+        Random randomGenerator = new Random();
+
+        setPrice(Math.round(minPrice + randomGenerator.nextDouble() * maxPrice));
         return price;
     }
 
@@ -158,5 +161,6 @@ public abstract class AbstractItem implements Item {
     public ArrayList<Double> getPriceHistory() {
         return priceHistory;
     }
+
 
 }

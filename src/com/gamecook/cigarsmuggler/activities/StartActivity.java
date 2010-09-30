@@ -125,7 +125,7 @@ public class StartActivity extends Activity implements View.OnClickListener, Dia
     }
 
     private void createNewGame(int days) {
-        game.startGame(days);
+        game.startGame(days, getApplicationContext());
 
         gotoGameScreen();
     }

@@ -5,4 +5,10 @@
     <string name="score_to_post">Score to Post</string>
     <string name="post_score">Post Score</string>
     <string name="score_display_text">Display Text</string>
+    <string name="difficulty_1">Easy</string>
+    <string name="difficulty_2">Medium</string>
+    <string name="difficulty_3">Hard</string>
+    <string name="cigar_description_low">This is a cheap cigar and easy to buy/sell.</string>
+    <string name="cigar_description_medium">An average priced cigar, people like these.</string>
+    <string name="cigar_description_high">A high priced cigar, these are hard to come by.</string>
 </resources>

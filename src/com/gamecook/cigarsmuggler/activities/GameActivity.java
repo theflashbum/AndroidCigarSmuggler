@@ -278,7 +278,7 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         ListView itemsList = (ListView) findViewById(R.id.items);
         itemsList.setAdapter(adapter);
         itemsList.setOnItemClickListener(this);
-        itemsList.setDivider(null);
+        //itemsList.setDivider(null);
     }
 
     public void toggleBuySellMode(int mode) {

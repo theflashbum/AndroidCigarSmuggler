@@ -6,6 +6,8 @@ import java.util.Collection;
 
 public class Store extends Inventory {
 
+
+
     /**
      * The Store represents a collection of items
      * with their associated prices. The store also

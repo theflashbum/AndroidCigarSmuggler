@@ -1,6 +1,8 @@
 package com.gamecook.cigarsmuggler.views;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -35,14 +37,12 @@ public class CigarAdapterView extends LinearLayout {
         mainView = inflate(context, R.layout.cigar_view, null);
 
         ((TextView) mainView.findViewById(R.id.CigarNameLabel)).setText(cigar.getName());
-        ((TextView) mainView.findViewById(R.id.CostTotalText)).setText(MoneyToStringUtil.convertToString(cigar.getPrice(), true) + "/" + Integer.toString(cigar.getTotal()));
+        ((TextView) mainView.findViewById(R.id.CostTotalText)).setText(MoneyToStringUtil.convertToString(cigar.getPrice(), true) + " / " + Integer.toString(cigar.getTotal()));
         ((TextView) mainView.findViewById(R.id.DescriptionText)).setText(cigar.getDescription());
 
         addView(mainView);
 
         HistoryGraphView graph = (HistoryGraphView) findViewById(R.id.HistoryGraphImage);
-
-        //int[] history = new int[]{0,15,0,5,10,6,10,1,15,18,0,15,0,5,10,6,10,1,15,18,0,15,0,5,10,6,10,1,15,18};
 
         graph.generateGraph(cigar.getPriceHistory());
     }
@@ -57,4 +57,5 @@ public class CigarAdapterView extends LinearLayout {
         animation.setFillAfter(true);
         mainView.startAnimation(animation);
     }
+
 }

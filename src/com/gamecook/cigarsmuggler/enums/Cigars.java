@@ -8,13 +8,13 @@ package com.gamecook.cigarsmuggler.enums;
  * To change this template use File | Settings | File Templates.
  */
 public enum Cigars {
-    COHIBA("cohiba", 3),
-    PARTEGAS("Partegas", 1),
+    COHIBA("cohiba", 2),
+    PARTEGAS("Partegas", 0),
     DIPLOMATICOS("Diplom‡ticos", 1),
-    H_UPMANN("H. Upmann", 3),
-    PUNCH("Punch", 1),
-    RAMON_ALLONES("Ram—n Allones", 1),
-    JUAN_LOPEZ("Juan Lopez", 1),
+    H_UPMANN("H. Upmann", 2),
+    PUNCH("Punch", 0),
+    RAMON_ALLONES("Ram—n Allones", 2),
+    JUAN_LOPEZ("Juan Lopez", 0),
     ROMEO_Y_JULIETA("Romeo Y Julieta", 1),
     MONTECRISTO("Montecristo", 1);
 

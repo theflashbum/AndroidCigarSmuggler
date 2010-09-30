@@ -5,59 +5,54 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" android:paddingTop="2sp">
 
-    <ImageView
-            android:id="@+id/CigarLabelImage"
-            android:layout_width="20dip"
-            android:layout_height="50dip"
-            android:background="#296dd6"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dip"
-            />
-
-
-    <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView android:layout_height="wrap_content"
-              android:layout_width="fill_parent"
-              android:id="@+id/CigarNameLabel"
-              android:text="Name"
-              android:typeface="sans"
-              android:textSize="20sp"
-              android:layout_toRightOf="@id/CigarLabelImage"
+    <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
+            android:id="@+id/CigarNameLabel"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+              android:layout_alignParentTop="true"
+              android:layout_alignParentLeft="true"
               android:layout_marginTop="5dip"
               android:layout_marginLeft="10dip"
+              android:textSize="20sp"
+              android:text="Name"
+              android:textColor="#ffffff"
             />
 
     <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
             android:id="@+id/CostTotalText"
-            android:textSize="20sp"
+            android:layout_width="50dip"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="5dip"
-            />
-
-    <com.gamecook.cigarsmuggler.views.CigarSmugglerTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="This is a description."
-            android:id="@+id/DescriptionText"
-            android:textSize="13sp"
-            android:layout_below="@id/CigarNameLabel"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:layout_toRightOf="@id/CigarLabelImage"
-            android:layout_marginLeft="10dip"
+            android:textSize="20sp"
+            android:text="0/0"
+            android:textColor="#ffffff"
             />
 
     <com.gamecook.cigarsmuggler.views.HistoryGraphView
             android:id="@+id/HistoryGraphImage"
             android:layout_width="100dip"
             android:layout_height="14dip"
-            android:layout_below="@id/DescriptionText"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dip"
+            android:layout_toLeftOf="@id/CostTotalText"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15dip"
+            android:layout_marginRight="10dip"
+            />
+
+    <TextView
+            android:id="@+id/DescriptionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/CigarNameLabel"
+            android:layout_alignParentLeft="true"
+            android:typeface="sans"
+            android:textSize="13sp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:text="This is a description."
             />
 
 </RelativeLayout>

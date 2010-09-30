@@ -1,12 +1,17 @@
 package com.gamecook.cigarsmuggler.core;
 
+import android.content.Context;
+import com.gamecook.cigarsmuggler.R;
 import com.gamecook.cigarsmuggler.collections.CigarSmugglerLocations;
+import com.gamecook.cigarsmuggler.collections.PriceRange;
 import com.gamecook.cigarsmuggler.enums.Cigars;
 import com.gamecook.cigarsmuggler.items.Cigar;
 import com.gamecook.fit.AbstractGame;
 import com.gamecook.fit.collections.Store;
 import com.gamecook.fit.items.Item;
 import com.gamecook.fit.time.Calendar;
+
+import java.util.ArrayList;
 
 /**
  * Created by IntelliJ IDEA.
@@ -18,7 +23,10 @@ import com.gamecook.fit.time.Calendar;
 public class CigarSmugglerGame extends AbstractGame {
 
     private int difficultyLevel;
+    private Context context;
     private static final int BASE_DAYS = 30;
+    private PriceRange[] costTable;
+    private String[] descriptions;
 
     public String getCurrentLocation() {
         return locations.getCurrentLocation();
@@ -32,10 +40,19 @@ public class CigarSmugglerGame extends AbstractGame {
         return difficultyLevel;
     }
 
+
     @Override
-    public void startGame(int difficultyLevel) {
+    public void startGame(int days) {
+        startGame(days, null);
+    }
+
+    public void startGame(int difficultyLevel, Context context) {
+
+        if(context == null)
+            throw new Error("This game instance needs a reference to a context to work.");
 
         this.difficultyLevel = difficultyLevel;
+        this.context = context;
 
         int days = ((3 - (difficultyLevel + 1)) + 1) * BASE_DAYS;
 
@@ -51,32 +68,44 @@ public class CigarSmugglerGame extends AbstractGame {
     }
 
     private void createCigarInventory() {
+
         Store store = getStore();
 
-        //TODO this could be optimized
+        costTable = new PriceRange[]{ new PriceRange(1,5),
+                                      new PriceRange(15,25),
+                                      new PriceRange(35,40)};
 
-        String loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id sapien sollicitudin purus facilisis dapibus. Duis enim dolor, sodales sit.";
-        store.add(createCigar(Cigars.COHIBA, 1, 10, loremIpsum), -1);
-        store.add(createCigar(Cigars.DIPLOMATICOS, 1, 10, loremIpsum), -1);
-        store.add(createCigar(Cigars.H_UPMANN, 1, 10, loremIpsum), -1);
-        store.add(createCigar(Cigars.JUAN_LOPEZ, 1, 10, loremIpsum), -1);
-        store.add(createCigar(Cigars.MONTECRISTO, 1, 10, loremIpsum), -1);
-        store.add(createCigar(Cigars.PARTEGAS, 1, 10, loremIpsum), -1);
-        store.add(createCigar(Cigars.PUNCH, 1, 10, loremIpsum), -1);
-        store.add(createCigar(Cigars.RAMON_ALLONES, 1, 10, loremIpsum), -1);
-        store.add(createCigar(Cigars.ROMEO_Y_JULIETA, 1, 10, loremIpsum), -1);
+        descriptions = new String[]{context.getString(R.string.cigar_description_low),
+                                    context.getString(R.string.cigar_description_medium),
+                                    context.getString(R.string.cigar_description_high)};
+
+        
+        store.add(createCigar(Cigars.COHIBA), -1);
+        store.add(createCigar(Cigars.DIPLOMATICOS), -1);
+        store.add(createCigar(Cigars.H_UPMANN), -1);
+        store.add(createCigar(Cigars.JUAN_LOPEZ), -1);
+        store.add(createCigar(Cigars.MONTECRISTO), -1);
+        store.add(createCigar(Cigars.PARTEGAS), -1);
+        store.add(createCigar(Cigars.PUNCH), -1);
+        store.add(createCigar(Cigars.RAMON_ALLONES), -1);
+        store.add(createCigar(Cigars.ROMEO_Y_JULIETA), -1);
 
         store.refresh();
     }
 
-    private Item createCigar(Cigars cigars, double min, double max, String description) {
+    private Item createCigar(Cigars cigars) {
 
         Item item = new Cigar(cigars.getName());
-        item.setMinPrice(min);
-        item.setMaxPrice(max);
-        item.setDescription(description);
 
-        int history = 25;
+        PriceRange range = costTable[cigars.getCost()];
+
+        item.setMinPrice(range.getMin());
+        item.setMaxPrice(range.getMax());
+        item.setDescription(descriptions[cigars.getCost()]);
+
+        //PPopulate price history
+        int history = 16;
+
         for (int i = 0; i < history; i ++)
         {
             item.generateNewPrice();
@@ -84,6 +113,7 @@ public class CigarSmugglerGame extends AbstractGame {
 
         return item;
     }
+
 
     @Override
     public void endGame() {
@@ -111,11 +141,11 @@ public class CigarSmugglerGame extends AbstractGame {
         switch (difficultyLevel)
         {
         case 1:
-            return "EASY";
+            return context.getString(R.string.difficulty_1);
         case 2:
-            return "Medium";
+            return context.getString(R.string.difficulty_2);
         case 3:
-            return "Hard";
+            return context.getString(R.string.difficulty_3);
         }
 
         return "None";
