@@ -47,7 +47,7 @@ public class CigarSmugglerGame extends AbstractGame {
     }
 
     public void startGame(int difficultyLevel, Context context) {
-
+        restart();
         if(context == null)
             throw new Error("This game instance needs a reference to a context to work.");
 
@@ -65,6 +65,17 @@ public class CigarSmugglerGame extends AbstractGame {
         setLocations(new CigarSmugglerLocations());
 
         gameStarted = true;
+    }
+
+    private void restart() {
+        inventory = null;
+        locations = null;
+        store = null;
+        bank = null;
+        wallet = null;
+        player = null;
+        calendar = null;
+
     }
 
     private void createCigarInventory() {
@@ -140,11 +151,11 @@ public class CigarSmugglerGame extends AbstractGame {
     public String difficultyToString() {
         switch (difficultyLevel)
         {
-        case 1:
+        case 0:
             return context.getString(R.string.difficulty_1);
-        case 2:
+        case 1:
             return context.getString(R.string.difficulty_2);
-        case 3:
+        case 2:
             return context.getString(R.string.difficulty_3);
         }
 

@@ -2,23 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="com.gamecook.cigarsmuggler"
       android:versionCode="1"
-      android:versionName="1.0">
-    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true">
-        <activity android:name=".activities.StartActivity" android:theme="@android:style/Theme.NoTitleBar">
+      android:versionName="1.0"
+        >
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:debuggable="true" >
+        <activity android:name=".activities.StartActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CreditsActivity" android:theme="@android:style/Theme.NoTitleBar"/>
-        <activity android:name=".activities.GameActivity" android:theme="@android:style/Theme.NoTitleBar"/>
-        <activity android:name=".activities.GameOverActivity" android:theme="@android:style/Theme.NoTitleBar"/>
-        <activity android:name=".activities.BankActivity" android:theme="@android:style/Theme.NoTitleBar"/>
-        <activity android:name=".activities.LeaderboardExplorer" android:label="Explore Leaderboards"/>
-        <activity android:name=".activities.ScoreExplorer" android:label="Explore High Scores"/>
-        <activity android:name=".activities.ScorePoster" android:label="Post a Score"/>
-        <activity android:name=".activities.AchievementExplorer" android:label="Explore Achievements"/>
-        <activity android:name=".activities.AchievementInvestigator" android:label="Achievement Status"/>
+        <activity android:name=".activities.CreditsActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"/>
+        <activity android:name=".activities.GameActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"/>
+        <activity android:name=".activities.GameOverActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"/>
+        <activity android:name=".activities.BankActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"/>
 
         <activity android:name="com.openfeint.internal.ui.IntroFlow"
                   android:label="IntroFlow"

@@ -361,4 +361,10 @@ public class GameActivity extends Activity implements View.OnClickListener, Dial
         return false;
 
     }
+
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	refreshDisplay();
+    }
 }

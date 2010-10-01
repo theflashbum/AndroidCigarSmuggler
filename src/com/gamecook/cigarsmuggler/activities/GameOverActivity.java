@@ -57,11 +57,19 @@ public class GameOverActivity extends Activity implements View.OnClickListener {
     }
 
     public void submitScore() {
-        String scoreBoardID;
+        String scoreBoardID = null;
 
-        switch (game.getCalendar().getTotalDays()) {
-            default:
-                scoreBoardID = "498393";
+        switch (game.getDifficultyLevel()) {
+            case 0: default:
+                scoreBoardID = getApplicationContext().getString(R.string.leaderboard_easy);
+            break;
+            case 1:
+                scoreBoardID = getApplicationContext().getString(R.string.leaderboard_medium);
+            break;
+            case 2:
+                scoreBoardID = getApplicationContext().getString(R.string.leaderboard_hard);
+            break;
+
         }
 
         int scoreValue = game.getScore();
